@@ -1,39 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 10:53:39 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/05 15:02:40 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/05 16:29:22 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/05 16:34:06 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		res;
 	int		i;
-	int		neg;
 
-	neg = 0;
 	i = 0;
-	res = 0;
-	while (str[i] < 33)
-		i++;
-	if (str[i] == '-')
-	{
-		neg = 1;
-		i++;
-	}
-	if (str[i] == '+')
-		i++;
-	while (str[i] <= '9' && str[i] >= '0' && str[i])
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	if (neg == 1)
-		return (-res);
-	return (res);
+	while
 }

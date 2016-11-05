@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 10:53:39 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/05 15:02:40 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/05 15:38:19 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/05 15:41:13 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
-{
-	int		res;
-	int		i;
-	int		neg;
+#include "libft.h"
 
-	neg = 0;
+void	ft_putstr_fd(char const *s, int fd)
+{
+	int		i;
+
 	i = 0;
-	res = 0;
-	while (str[i] < 33)
-		i++;
-	if (str[i] == '-')
+	while (s[i] != '\0')
 	{
-		neg = 1;
+		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-	if (str[i] == '+')
-		i++;
-	while (str[i] <= '9' && str[i] >= '0' && str[i])
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	if (neg == 1)
-		return (-res);
-	return (res);
 }

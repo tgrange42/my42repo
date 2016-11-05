@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 10:53:39 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/05 15:02:40 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/05 14:55:20 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/05 15:16:14 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
-{
-	int		res;
-	int		i;
-	int		neg;
+#include "libft.h"
 
-	neg = 0;
+char	*ft_strchr(const char *s, int c)
+{
+	int		i;
+	char	buf;
+
 	i = 0;
-	res = 0;
-	while (str[i] < 33)
-		i++;
-	if (str[i] == '-')
+	buf = (char)c;
+	while (s[i] != '\0')
 	{
-		neg = 1;
+		if (s[i] == buf)
+			return ((char *)&s[i]);
 		i++;
 	}
-	if (str[i] == '+')
-		i++;
-	while (str[i] <= '9' && str[i] >= '0' && str[i])
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	if (neg == 1)
-		return (-res);
-	return (res);
+	if (s[i] == buf)
+		return ((char *)&s[i]);
+	return (NULL);
 }
