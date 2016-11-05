@@ -1,2 +1,3 @@
 # my42repo
-42
+Voivi mon repo pour ma scolarite a 42.
+GL HF les potes.
