@@ -6,7 +6,7 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 10:09:13 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/05 16:34:08 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/06 17:03:13 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ char	*ft_strrchr(const char *s, int c);
 void	ft_putchar(char c);
 void	ft_putstr(char const *s);
 void	ft_putchar_fd(char c, int fd);
-void	ft_putstr(char const *s int fd);
+void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl(char const *s);
 void	ft_putendl_fd(char const *s, int fd);
+char	*ft_itoa(int n);
+void	ft_putnbr(int n);
+void	ft_putnbr_fd(int n, int fd);
+int		ft_countchar(const char *s, char c);
+int		ft_strlento(const char *s, char c, int n);
 #endif

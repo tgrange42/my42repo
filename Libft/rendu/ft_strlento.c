@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strlento.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 10:53:39 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/06 13:50:17 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/06 16:49:33 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/06 16:53:58 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
+int		ft_strlento(const char *s, char c, int n)
 {
-	int		res;
-	int		i;
-	int		neg;
-
-	neg = 0;
-	i = 0;
-	res = 0;
-	while (str[i] < 33)
-		i++;
-	if (str[i] == '-')
-	{
-		neg = 1;
-		i++;
-	}
-	if (str[i] == '+')
-		i++;
-	while (str[i] <= '9' && str[i] >= '0' && str[i])
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	if (neg == 1)
-		return (-res);
-	return (res);
+	while (s[n] != '\0' && s[n] != c)
+		n++;
+	return (n);
 }
