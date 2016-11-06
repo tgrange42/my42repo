@@ -6,17 +6,22 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 15:42:00 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/06 16:39:47 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/06 17:09:40 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_countchar(const char *s, char c)
 {
 	int		i;
+	int		j;
 
+	j = 0;
 	i = 0;
-	while (*s++)
-		if (*s == c)
-			i++;
-	return (i);
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			j++;
+		i++;
+	}
+	return (j);
 }
