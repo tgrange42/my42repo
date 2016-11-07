@@ -6,7 +6,7 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 10:09:13 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/06 17:03:13 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/07 15:50:22 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,9 @@ void	ft_putnbr(int n);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_countchar(const char *s, char c);
 int		ft_strlento(const char *s, char c, int n);
+void	*ft_memalloc(size_t size);
+void	ft_memdel(void **ap);
+char	*ft_strnew(size_t size);
+void	ft_strdel(char **as);
+char	*ft_strtrim(const char *s);
 #endif
