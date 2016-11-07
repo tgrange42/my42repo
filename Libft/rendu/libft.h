@@ -6,7 +6,7 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 10:09:13 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/07 15:50:22 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/07 18:06:09 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,8 @@ void	ft_memdel(void **ap);
 char	*ft_strnew(size_t size);
 void	ft_strdel(char **as);
 char	*ft_strtrim(const char *s);
+char	**ft_strsplit(char const *s, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_strequ(char const *s1, char const *s2);
+int		ft_strnequ(char const *s1, char const *s2, size_t n);
 #endif

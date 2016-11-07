@@ -1,42 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:44:50 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/07 17:03:12 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/07 17:55:55 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/07 18:06:17 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*dst;
-	int		i;
-	int		j;
-
-	j = ft_strlen(s1);
-	i = ft_strlen(s2);
-	if (!(dst = (char *)malloc(sizeof(char) * (i + j))))
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i])
-	{
-		dst[j] = s1[i];
-		i++;
-		j++;
-	}
-	i = 0;
-	while (s2[i])
-	{
-		dst[j] = s2[i];
-		i++;
-		j++;
-	}
-	dst[j] = '\0';
-	return (dst);
-}
+char	*ft_strsub

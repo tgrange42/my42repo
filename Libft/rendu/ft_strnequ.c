@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:44:50 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/07 17:03:12 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/07 17:37:14 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/07 17:41:43 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	char	*dst;
-	int		i;
-	int		j;
+	if (ft_strncmp(s1, s2, n) == 0)
+		return (1);
+	return (0);
+}
 
-	j = ft_strlen(s1);
-	i = ft_strlen(s2);
-	if (!(dst = (char *)malloc(sizeof(char) * (i + j))))
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i])
-	{
-		dst[j] = s1[i];
-		i++;
-		j++;
-	}
-	i = 0;
-	while (s2[i])
-	{
-		dst[j] = s2[i];
-		i++;
-		j++;
-	}
-	dst[j] = '\0';
-	return (dst);
+int		main(int nbarg, char **arg)
+{
+	(void)nbarg;
+	ft_putnbr(ft_strnequ(arg[1], arg[2], (size_t)ft_atoi(arg[3])));
+	return (0);
 }
