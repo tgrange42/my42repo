@@ -6,7 +6,7 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 13:01:00 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/06 14:47:17 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/07 09:23:06 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_itoav(char *res, int n, int dix)
 	}
 	else
 		n *= -1;
-	while (n != 0)
+	while (dix != 0)
 	{
 		res[i] = -(n / dix) + '0';
 		n %= dix;
