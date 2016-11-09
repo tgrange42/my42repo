@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 13:55:11 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/04 15:21:49 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/09 16:34:23 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/09 16:37:52 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-	int		*buf;
-
-	i = 0;
-	buf = (int *)s;
-	while (i < n)
-	{
-		buf[i] = 0;
-		i++;
-	}
-	s = (void *)buf;
+	ft_memset(s, 0, n);
 }

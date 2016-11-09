@@ -6,7 +6,7 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 14:41:26 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/06 14:42:34 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/09 15:10:43 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,27 @@
 
 void	ft_putnbr(int n)
 {
-	ft_putstr(ft_itoa(n));
+	int		x;
+
+	x = 1000000000;
+	if (n == 0)
+	{
+		ft_putchar('0');
+		return ;
+	}
+	while (n / x == 0)
+		x /= 10;
+	if (n < 0)
+		ft_putchar('-');
+	else
+		n *= -1;
+	while (x)
+	{
+		if (-(n / x) == 0)
+			ft_putchar('0');
+		else
+			ft_putchar(-(n / x) + '0');
+		n %= x;
+		x /= 10;
+	}
 }

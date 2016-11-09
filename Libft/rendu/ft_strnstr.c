@@ -6,7 +6,7 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 16:49:50 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/04 18:24:15 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/09 17:42:26 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ char	*ft_strnstrv(char *buf, const char *little, size_t len)
 	j = 0;
 	while (beacon < len + 1)
 	{
-		while ((i < len - 1 || j > 0 || (ft_strlen(little) == 1 && i < len)) \
-				&& buf[i] != '\0')
+		while ((i < len - 1 || (j > 0 && i < len) || (ft_strlen(little) == 1 && i < len)) && buf[i] != '\0')
 		{
 			if (buf[i] == little[j])
 				j++;

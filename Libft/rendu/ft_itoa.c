@@ -6,11 +6,28 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 13:01:00 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/07 09:23:06 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/09 16:25:38 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int		ft_getintlen(int n)
+{
+	int		i;
+
+	i = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+		i++;
+	while (n)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
 
 char	*ft_itoav(char *res, int n, int dix)
 {
@@ -40,9 +57,9 @@ char	*ft_itoa(int n)
 	char	*res;
 	int		dix;
 
-	dix = 1000000000;
-	if (!(res = (char *)malloc(sizeof(char) * 11)))
+	if (!(res = (char *)malloc(sizeof(char) * (ft_getintlen(n) + 1))))
 		return (NULL);
+	dix = 1000000000;
 	if (n == 0)
 	{
 		res[0] = '0';
