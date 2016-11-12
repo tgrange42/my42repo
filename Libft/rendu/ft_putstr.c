@@ -17,9 +17,12 @@ void	ft_putstr(char const *s)
 	int		i;
 
 	i = 0;
-	while (s[i] != '\0')
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
+	if (!(s))
+		ft_putstr("(null)");
+	else
+		while (s[i] != '\0')
+		{
+			ft_putchar(s[i]);
+			i++;
+		}
 }

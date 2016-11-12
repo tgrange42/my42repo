@@ -24,7 +24,7 @@ DOTO = ft_memset.o ft_bzero.o ft_strlen.o ft_strdup.o ft_strcpy.o ft_strstr.o ft
 
 NAME = libft.a
 
-FLAGS = -Wextra -Wall -Werror -c
+FLAGS = -Wextra -Wall -Werror -std=c99 -c
 
 all: $(NAME)
 
