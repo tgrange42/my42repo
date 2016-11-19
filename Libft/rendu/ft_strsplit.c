@@ -1,90 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   ft_strpsplit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 15:38:22 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/07 16:52:08 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/17 10:23:55 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/19 10:47:44 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_countit(const char *str, char c)
+static int		ft_lenword(const char *s, char c)
 {
 	int		i;
-	int		x;
 
-	x = 0;
 	i = 0;
-	while (str[i] != '\0')
+	while (*s && *s != c)
 	{
-		if (str[i] != c)
-		{
-			x++;
-			while (str[i] != c)
-				i++;
-		}
-		else
-			i++;
-	}
-	return (x);
-}
-
-char	*ft_strcpyto(char const *str, char *dst, char c, int i)
-{
-	int		l;
-
-	l = 0;
-	if (!(dst = (char *)malloc(sizeof(char) * ft_strlento(str, c, i))))
-		return (NULL);
-	while (str[i] && str[i] != c)
-	{
-		dst[l] = str[i];
 		i++;
-		l++;
+		s++;
 	}
-	dst[l] = '\0';
-	return (dst);
+	return (i);
 }
 
-char	**ft_strsplitv(char const *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
 	char	**res;
 	int		i;
-	int		j;
+	int		nbwd;
 
 	i = 0;
-	j = 0;
-	if (!(res = (char **)malloc(sizeof(char) * ft_countit(s, c))))
+	nbwd = ft_countav(s, c);
+	if (!s)
 		return (NULL);
-	while (s[i])
+	if (!(res = (char **)malloc(sizeof(*res) * (nbwd))))
+		return (NULL);
+	while (nbwd--)
 	{
-		if (s[i] != c)
+		while (*s == c && *s)
+			s++;
+		res[i] = ft_strsub(s, 0, ft_lenword(s, c));
+		if (res[i] == NULL)
 		{
-			res[j] = ft_strcpyto(s, res[j], c, i);
-			while (s[i] != c)
-				i++;
-			j++;
+			ft_memdel((void **)res);
+			return (NULL);
 		}
+		s += ft_lenword(s, c);
 		i++;
 	}
-	return (res);
-}
-
-char	**ft_strsplit(char const *s, char c)
-{
-	char	**res;
-	int		i;
-
-	res = ft_strsplitv(s, c);
-	i = ft_countit(s, c);
-	while (res[i])
-	{
-		res[i] = NULL;
-		i++;
-	}
+	res[i] = NULL;
 	return (res);
 }

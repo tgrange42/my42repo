@@ -6,7 +6,7 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 14:43:06 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/07 14:45:50 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/16 11:16:04 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 void	*ft_memalloc(size_t size)
 {
-	void	*area;
+	char	*area;
+	int		i;
 
-	if (!(area = (void *)malloc(sizeof(area) * size)))
+	i = 0;
+	area = NULL;
+	if (!(area = (char *)malloc(sizeof(area) * size)))
 		return (NULL);
-	return (area);
+	while (area[i])
+	{
+		area[i] = '\0';
+		i++;
+	}
+	return ((void *)area);
 }

@@ -6,13 +6,13 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 15:44:23 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/06 15:44:25 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/17 10:30:43 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstrv(const char *big, const char *little)
+static char	*ft_strstrv(const char *big, const char *little)
 {
 	size_t		beacon;
 	size_t		i;
@@ -41,7 +41,7 @@ char	*ft_strstrv(const char *big, const char *little)
 	return (NULL);
 }
 
-char	*ft_strstr(const char *big, const char *little)
+char		*ft_strstr(const char *big, const char *little)
 {
 	char	*res;
 

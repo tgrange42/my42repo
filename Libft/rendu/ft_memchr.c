@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 18:59:11 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/19 11:11:58 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/14 06:57:55 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/14 07:08:51 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int		i;
-	int		j;
+	size_t			i;
+	unsigned char	*try;
 
+	try = (unsigned char *)s;
 	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		i++;
-	while (s2[j] != '\0')
+	c = (unsigned char)c;
+	while (i < n)
 	{
-		s1[i] = s2[j];
+		if (try[i] == c)
+		{
+			return ((void *)&s[i]);
+		}
 		i++;
-		j++;
 	}
-	s1[i] = '\0';
-	return (s1);
+	try = NULL;
+	return ((void *)try);
 }

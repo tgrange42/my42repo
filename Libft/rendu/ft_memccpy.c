@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 18:59:11 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/19 11:11:58 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/14 09:51:27 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/19 11:10:29 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int		i;
-	int		j;
+	size_t			i;
+	unsigned char	*t1;
+	unsigned char	*t2;
 
 	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		i++;
-	while (s2[j] != '\0')
+	t1 = (unsigned char *)dst;
+	t2 = (unsigned char *)src;
+	while (i < n)
 	{
-		s1[i] = s2[j];
+		if ((*t1++ = *t2++) == (unsigned char)c)
+			return (t1);
 		i++;
-		j++;
 	}
-	s1[i] = '\0';
-	return (s1);
+	return (NULL);
 }

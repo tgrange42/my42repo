@@ -6,13 +6,13 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 13:01:00 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/09 16:25:38 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/17 10:29:57 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_getintlen(int n)
+static int		ft_getintlen(int n)
 {
 	int		i;
 
@@ -29,7 +29,7 @@ int		ft_getintlen(int n)
 	return (i);
 }
 
-char	*ft_itoav(char *res, int n, int dix)
+static char		*ft_itoav(char *res, int n, int dix)
 {
 	int		i;
 
@@ -52,7 +52,7 @@ char	*ft_itoav(char *res, int n, int dix)
 	return (res);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	char	*res;
 	int		dix;

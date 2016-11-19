@@ -6,13 +6,13 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 15:44:50 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/07 17:03:12 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/17 10:31:06 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static char	*ft_strjoinv(char const *s1, char const *s2)
 {
 	char	*dst;
 	int		i;
@@ -39,4 +39,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	dst[j] = '\0';
 	return (dst);
+}
+
+char		*ft_strjoin(char const *s1, char const *s2)
+{
+	if (!(s2) || !(s1))
+		return (NULL);
+	return (ft_strjoinv(s1, s2));
 }

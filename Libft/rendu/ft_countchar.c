@@ -6,9 +6,11 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 15:42:00 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/06 17:09:40 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/19 11:51:05 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int		ft_countchar(const char *s, char c)
 {

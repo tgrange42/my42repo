@@ -6,7 +6,7 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:31:54 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/05 15:39:20 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/19 10:40:27 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ void	ft_putstr(char const *s)
 	int		i;
 
 	i = 0;
-	if (!(s))
-		ft_putstr("(null)");
-	else
-		while (s[i] != '\0')
-		{
-			ft_putchar(s[i]);
-			i++;
-		}
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
 }

@@ -6,13 +6,13 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 15:13:56 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/07 15:43:06 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/17 10:55:03 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_endspaces(const char *s)
+static int		ft_endspaces(const char *s)
 {
 	int		i;
 	int		x;
@@ -27,7 +27,7 @@ int		ft_endspaces(const char *s)
 	return (x);
 }
 
-int		ft_begspaces(const char *s)
+static int		ft_begspaces(const char *s)
 {
 	int		i;
 
@@ -37,7 +37,7 @@ int		ft_begspaces(const char *s)
 	return (i);
 }
 
-char	*ft_strtrim(const char *s)
+static char		*ft_strtrimv(const char *s)
 {
 	char	*dst;
 	int		end;
@@ -47,7 +47,8 @@ char	*ft_strtrim(const char *s)
 	i = 0;
 	beg = ft_begspaces(s);
 	end = ft_endspaces(s);
-	if (!(dst = (char *)malloc(sizeof(char) * ((int)ft_strlen - (beg + end)))))
+	if (!(dst = (char *)malloc(sizeof(char) * \
+					((int)ft_strlen(s) - (beg + end - 1)))))
 		return (NULL);
 	while (beg < (int)ft_strlen(s) - end)
 	{
@@ -57,4 +58,20 @@ char	*ft_strtrim(const char *s)
 	}
 	dst[i] = '\0';
 	return (dst);
+}
+
+char			*ft_strtrim(const char *s)
+{
+	int		i;
+
+	i = 0;
+	if (!(s))
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
+			return (ft_strtrimv(s));
+		i++;
+	}
+	return ("");
 }

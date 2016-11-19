@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 18:59:11 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/19 11:11:58 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/14 06:38:50 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/19 11:56:22 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int		i;
-	int		j;
+	size_t		i;
+	char		*t1;
+	const char	*t2;
 
 	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		i++;
-	while (s2[j] != '\0')
+	t1 = (char *)dst;
+	t2 = (const char *)src;
+	if (!n)
+		return (dst);
+	while (i < n)
 	{
-		s1[i] = s2[j];
+		t1[i] = t2[i];
 		i++;
-		j++;
 	}
-	s1[i] = '\0';
-	return (s1);
+	return (dst);
 }

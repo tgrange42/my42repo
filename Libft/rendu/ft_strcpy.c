@@ -6,9 +6,11 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 11:27:59 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/04 11:29:56 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/19 11:54:57 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strcpy(char *dst, const char *src)
 {

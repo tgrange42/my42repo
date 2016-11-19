@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 18:59:11 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/19 11:11:58 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/14 11:22:45 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/19 11:03:58 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int		i;
-	int		j;
+	unsigned char	*t1;
+	unsigned char	*t2;
 
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		i++;
-	while (s2[j] != '\0')
-	{
-		s1[i] = s2[j];
-		i++;
-		j++;
-	}
-	s1[i] = '\0';
-	return (s1);
+	t1 = (unsigned char *)dst;
+	t2 = (unsigned char *)src;
+	if (!len)
+		return (dst);
+	if (dst <= src)
+		return (ft_memcpy(dst, src, len));
+	while (len--)
+		t1[len] = t2[len];
+	return (dst);
 }

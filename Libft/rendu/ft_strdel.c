@@ -6,7 +6,7 @@
 /*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 15:03:08 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/07 15:06:58 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/11/16 18:42:22 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	ft_strdel(char **as)
 {
-	free(as);
-	as = NULL;
+	if (!as)
+	{
+		free(as);
+		return ;
+	}
+	ft_memdel((void **)as);
 }
