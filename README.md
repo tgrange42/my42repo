@@ -5,5 +5,3 @@ GL HF les potes.
 Contributeurs:
 	tgrange
 	atgerard
-
-PUSH TON FILLIT PLEASE !!!!!!
