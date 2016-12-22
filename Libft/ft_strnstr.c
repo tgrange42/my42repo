@@ -3,51 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 16:49:50 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/22 12:14:36 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/12/10 03:51:25 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strnstrv(char *buf, const char *little, size_t len)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	size_t	beacon;
-	size_t	i;
-	size_t	j;
+	size_t	itn;
+	char	*it1;
+	char	*it2;
 
-	beacon = 0;
-	i = 0;
-	j = 0;
-	while (beacon < len + 1 && beacon < ft_strlen(buf))
+	if (!*s2)
+		return ((void *)s1);
+	while (n-- && *s1)
 	{
-		while ((i < len - 1 || (j > 0 && i < len) || (ft_strlen(little) == 1 \
-						&& i < len)) && buf[i] != '\0')
+		if (*s1 == *s2)
 		{
-			if (buf[i] == little[j])
-				j++;
-			else
-				j = 0;
-			if (little[j] == '\0')
-				return (&buf[i + 1 - ft_strlen(little)]);
-			i++;
+			itn = n;
+			it1 = (void *)s1 + 1;
+			it2 = (void *)s2 + 1;
+			while (itn-- && *it1 && *it2 && *it1 == *it2)
+			{
+				++it1;
+				++it2;
+			}
+			if (!*it2)
+				return ((void *)s1);
 		}
-		beacon++;
-		i = beacon;
+		s1++;
 	}
 	return (NULL);
-}
-
-char		*ft_strnstr(const char *big, const char *little, size_t len)
-{
-	char	*res;
-
-	res = (char *)big;
-	if (ft_strcmp(little, "") != 0 && len)
-		return (ft_strnstrv(res, little, len));
-	if (!len)
-		return (NULL);
-	return (res);
 }

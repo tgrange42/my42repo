@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 18:02:57 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/22 18:42:56 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/12/11 02:16:45 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	ft_lstincre(t_list *alst, t_list *new)
 					* new->content_size)))
 		return ;
 	alst->next->content_size = new->content_size;
+	alst->next->next = NULL;
 	ft_memcpy(alst->next->content, new->content, new->content_size);
 }

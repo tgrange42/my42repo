@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:25:33 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/24 11:20:39 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/12/17 12:36:07 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,13 @@ static char		*ft_itoa_base_v(int nb, int base, char *ret)
 	while (nb)
 	{
 		if (base > 10 && -(nb % base) > 9)
-			ret[i] = -(nb % base) - 10 + 'A';
+			ret[i++] = -(nb % base) - 10 + 'a';
 		else
-			ret[i] = -(nb % base) + '0';
+			ret[i++] = -(nb % base) + '0';
 		nb /= base;
-		i++;
 	}
 	if (neg)
-	{
-		ret[i] = '-';
-		i++;
-	}
+		ret[i++] = '-';
 	ret[i] = '\0';
 	return (ret);
 }

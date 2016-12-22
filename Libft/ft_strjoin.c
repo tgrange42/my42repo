@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 15:44:50 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/17 10:31:06 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/12/19 13:12:56 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*ft_strjoinv(char const *s1, char const *s2)
 
 	j = ft_strlen(s1);
 	i = ft_strlen(s2);
-	if (!(dst = (char *)malloc(sizeof(char) * (i + j))))
+	if (!(dst = (char *)ft_memalloc(sizeof(char) * (i + j + 1))))
 		return (NULL);
 	i = 0;
 	j = 0;

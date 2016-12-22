@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_revstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:55:59 by tgrange           #+#    #+#             */
-/*   Updated: 2016/11/23 19:02:21 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/12/17 12:41:41 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_revstr(char *str)
 	i = ft_strlen(str);
 	if (!str)
 		return (NULL);
-	if (!(ret = (char *)malloc(sizeof(char) * i)))
+	if (!(ret = (char *)ft_memalloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	while (i--)
 	{
