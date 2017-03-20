@@ -1,4 +1,19 @@
-#include "ft_ls.h"
+#include "../ft_ls.h"
+
+char	*get_path(char *actual_path, char *dir_name)
+{
+	char	*path;
+	int		len;
+
+	len = ft_strlen(actual_path) + ft_strlen(dir_name) + 2;
+	if (!(path = (char *)ft_memalloc(sizeof(char) * len)))
+		return (NULL);
+	path = ft_strcpy(path, actual_path);
+	path[ft_strlen(actual_path)] = '/';
+	path = ft_strcat(path, dir_name);
+	// ft_strdel(&dir_name);
+	return (path);
+}
 
 void	test_ls(char *name_of_dir)
 {
@@ -8,15 +23,16 @@ void	test_ls(char *name_of_dir)
 	stream = opendir(name_of_dir);
 	while ((list = readdir(stream)) != NULL)
 	{
-		get_stats(list->d_name);
-		ft_putendl("");
+		ft_putendl(get_path(name_of_dir, list->d_name));
 	}
 	closedir(stream);
 }
 
 int		main(int nbarg, char **arg)
 {
-	(void)nbarg;
-	test_ls(arg[1]);
+	if (nbarg == 1)
+		test_ls(".");
+	else
+		test_ls(arg[1]);
 	return (0);
 }

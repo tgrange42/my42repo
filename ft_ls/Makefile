@@ -6,7 +6,7 @@
 #    By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/10 03:59:22 by tgrange           #+#    #+#              #
-#    Updated: 2017/03/09 19:00:29 by tgrange          ###   ########.fr        #
+#    Updated: 2017/03/17 16:01:10 by tgrange          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,13 @@ NAME =		ft_ls
 
 CFLAGS =	-Wall -Wextra -Werror
 
-SRC =		ft_ls.c \
-			
+SRC =		SRC/ft_ls.c \
+			SRC/lscore.c \
+			SRC/flags_ls.c \
+			SRC/path.c \
+			SRC/error_ls.c \
+			SRC/list_ls.c \
+			SRC/collect_infos.c \
 
 OBJ =		$(SRC:.c=.o)
 

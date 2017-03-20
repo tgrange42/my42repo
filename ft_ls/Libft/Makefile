@@ -6,7 +6,7 @@
 #    By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 18:25:11 by tgrange           #+#    #+#              #
-#    Updated: 2016/12/18 18:51:03 by tgrange          ###   ########.fr        #
+#    Updated: 2017/03/17 14:55:54 by tgrange          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ src = ft_memset.c ft_bzero.c ft_strlen.c ft_strdup.c ft_strcpy.c ft_strstr.c ft_
 	   ft_strdel.c ft_strclr.c ft_strtrim.c ft_strjoin.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_countav.c ft_strsplit.c \
 	   ft_strmap.c ft_strmapi.c ft_striter.c ft_striteri.c ft_memcmp.c ft_memchr.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	   ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_revstr.c ft_itoa_base.c ft_putnbr_base.c \
-	   ft_lstincre.c ft_sqrt.c ft_strlento.c
+	   ft_lstincre.c ft_sqrt.c ft_strlento.c ft_swap.c ft_swapptr.c ft_swaptriple.c ft_swaplst.c
 
 obj = $(src:.c=.o)
 
@@ -38,6 +38,6 @@ clean:
 	@rm -rf $(obj)
 
 fclean: clean
-	@rm $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
