@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 11:40:54 by tgrange           #+#    #+#             */
-/*   Updated: 2017/03/17 17:28:42 by tgrange          ###   ########.fr       */
+/*   Created: 2017/04/03 19:14:03 by tgrange           #+#    #+#             */
+/*   Updated: 2017/04/04 14:40:11 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_ls.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	ft_print_char(char c, int n)
 {
-	t_flags		flags;
+	int		i;
 
-	(void)argc;
-	initialize_struct_flags(&flags);
-	get_multiple_flags(argv, &flags);
-	get_multiple_arg(argv, flags);
-	return (0);
+	i = 0;
+	while (i < n)
+	{
+		ft_putchar(c);
+		i++;
+	}
 }

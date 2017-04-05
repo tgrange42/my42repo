@@ -5,18 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/17 14:47:49 by tgrange           #+#    #+#             */
-/*   Updated: 2017/03/17 17:00:14 by tgrange          ###   ########.fr       */
+/*   Created: 2017/04/03 11:22:21 by tgrange           #+#    #+#             */
+/*   Updated: 2017/04/03 11:41:03 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_swapptr(void **s1, void **s2)
+void	ft_swapptr(void **m1, void **m2)
 {
 	void	*tmp;
 
-	tmp = *s1;
-	*s1 = *s2;
-	*s2 = tmp;
+	tmp = *m1;
+	*m1 = *m2;
+	*m2 = tmp;
 }

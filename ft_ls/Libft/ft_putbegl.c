@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collect_infos.c                                    :+:      :+:    :+:   */
+/*   ft_putbegl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/17 16:00:51 by tgrange           #+#    #+#             */
-/*   Updated: 2017/03/17 17:22:32 by tgrange          ###   ########.fr       */
+/*   Created: 2017/04/04 13:38:55 by tgrange           #+#    #+#             */
+/*   Updated: 2017/04/04 13:42:26 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_ls.h"
+#include "libft.h"
 
-t_info		*sort_list_time(t_list **lst)
+void	ft_putbegl(char *str)
 {
-
+	ft_putchar('\n');
+	ft_putstr(str);
 }

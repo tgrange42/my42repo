@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:31:31 by tgrange           #+#    #+#             */
-/*   Updated: 2017/03/20 14:51:13 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/05 16:29:36 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
+# include <sys/ioctl.h>
 
 /*
 **	Structs
@@ -26,30 +27,45 @@
 
 typedef struct		s_flags
 {
-	int				R_flag;
+	int				grand_r_flag;
 	int				a_flag;
 	int				l_flag;
 	int				r_flag;
 	int				t_flag;
+	int				one_flag;
 }					t_flags;
+
+typedef struct		s_winenv
+{
+	size_t			column;
+	size_t			max_len;
+	size_t			nb_col;
+	size_t			nb_files;
+	size_t			nb_lines;
+}					t_winenv;
 
 typedef struct		s_info
 {
 	char			type;
 	char			*name;
-	char			**date;
+	char			*path;
 	char			*grp;
 	char			*author;
 	char			*perms;
-	int				*date_int;
-	size_t			size;
-	size_t			links;
+	char			*size;
+	char			*links;
+	char			**date;
+	size_t			blocks;
+	time_t			date_int;
 	struct s_info	*next;
 }					t_info;
 
 /*
-**	ft_ls.c
-*/	
+**	time.c
+*/
+
+char				**get_time_char(char *name, time_t *int_date);
+void				sort_list_time(t_info **lst);
 
 /*
 **	error_ls.c
@@ -62,28 +78,56 @@ void				exit_error(int type_of_error, char wrong_flag);
 */
 
 void				get_multiple_flags(char **argv, t_flags *stock);
-void				get_flags(t_flags *stock, char *flags);
 void				initialize_struct_flags(t_flags *flags);
 /*
-**	path.c
+**	tools.c
 */
 
 char				*get_path(char *actual_path, char *dir_name);
+size_t				get_nb_files(t_info **files);
 
 /*
 **	lscore.c
 */
 
 void				ft_opendir(t_flags flags, char *name);
-t_list				*get_files_names(char *path, t_flags flags);
+t_info				*create_t_info(char *name_file, int type, char *path);
 void				get_multiple_arg(char **argv, t_flags flags);
 
 /*
 **	list_ls.c
 */
 
-void				rev_list(t_list **lst);
-void				sort_list_alpha(t_list **begin_lst);
+void				rev_list(t_info **lst);
+void				sort_list_alpha(t_info **begin_lst);
+void				pushback_t_info(t_info *new, t_info **begin);
+void				swap_t_info(t_info *m1, t_info *m2);
 
+/*
+**	collect_infos.c
+*/
+
+void				collect_infos(t_info **lst);
+
+/*
+**	display.c
+*/
+
+void				display_it(t_info **files);
+
+/*
+**	display2.c
+*/
+
+void				print_dir(t_flags flags, t_info **files);
+void				display_one_flag(t_info **files);
+
+/*
+**	clean_ls.c
+*/
+
+void				clean_t_info(t_info *lst, t_flags flags);
+void				next_rm(t_info **lst);
+void				display_basic(t_info **files);
 
 #endif

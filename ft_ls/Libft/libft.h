@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 10:09:13 by tgrange           #+#    #+#             */
-/*   Updated: 2017/03/17 17:02:23 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/04 13:39:15 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ void				ft_putendl(char const *s);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_base(int nb, int base);
 void				ft_swap(int *s1, int *s2);
-void				ft_swapptr(void **s1, void **s2);
-void				ft_swaptriple(void ***s1, void ***s2);
+void				ft_swapptr(void **m1, void **m2);
 void				ft_swaplst(t_list *s1, t_list *s2);
+void				ft_print_char(char c, int n);
+void				ft_putbegl(char *str);
 #endif

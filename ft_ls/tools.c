@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path.c                                             :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/15 13:04:24 by tgrange           #+#    #+#             */
-/*   Updated: 2017/03/17 15:13:33 by tgrange          ###   ########.fr       */
+/*   Created: 2017/04/05 16:28:41 by tgrange           #+#    #+#             */
+/*   Updated: 2017/04/05 16:37:17 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_ls.h"
+#include "ft_ls.h"
 
 char	*get_path(char *actual_path, char *dir_name)
 {
@@ -24,4 +24,19 @@ char	*get_path(char *actual_path, char *dir_name)
 	path[ft_strlen(actual_path)] = '/';
 	path = ft_strcat(path, dir_name);
 	return (path);
+}
+
+size_t	get_nb_files(t_info **files)
+{
+	size_t	ret;
+	t_info	*tmp;
+
+	tmp = *files;
+	ret = 0;
+	while (tmp)
+	{
+		ret++;
+		tmp = tmp->next;
+	}
+	return (ret);
 }

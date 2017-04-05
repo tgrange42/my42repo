@@ -1,38 +1,17 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/17 11:00:42 by tgrange           #+#    #+#             */
-/*   Updated: 2017/03/17 17:19:33 by tgrange          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <sys/ioctl.h>
+#include <stdio.h>
+#include "Libft/libft.h"
 
-#include "ft_ls.h"
-
-void	rev_list(t_list **lst);
-
-int		main(void)
+int main (int argc, char **argv)
 {
-	t_list		*test;
-	t_list		*lol;
-	t_list		*lel;
+    struct winsize w;
+    ioctl(0, TIOCGWINSZ, &w);
 
-	lel = ft_lstnew("abc", 3);
-	lol = ft_lstnew("cde", 3);
-	test = ft_lstnew("bodde", 5);
-	ft_lstincre(&test, lol);
-	ft_lstincre(&test, lel);
-	ft_putendl(test->content);
-	ft_putendl(test->next->content);
-	ft_putendl(test->next->next->content);
-	// rev_list(&test);
-	sort_list_alpha(&test);
-	ft_putendl(test->content);
-	ft_putendl(test->next->content);
-	ft_putendl(test->next->next->content);
-	return (0);
+    printf ("lines %d\n", w.ws_row);
+    printf ("columns %d\n", w.ws_col);
+    ft_print_char(argv[1][0], w.ws_col + 1);
+    ft_putbegl("i\t|\n");
+    ft_putendl("123456789");
+    ft_putnbr(ft_strlen("\t"));
+    return 0;
 }
-¡
