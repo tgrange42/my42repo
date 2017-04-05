@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 12:57:30 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/05 17:58:48 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/05 19:32:08 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	print_name_t_info(t_info **files, size_t i, t_winenv wenv)
 
 	tmp = *files;
 	l = 0;
+	// ft_putendl("");
+	// ft_putnbr(i);
+	// ft_putendl("");
 	while (l < i)
 	{
 		l++;
@@ -67,9 +70,17 @@ void	print_basic_padding(t_winenv wenv, t_info **files)
 	{
 		while (l < wenv.nb_col)
 		{
-			print_name_t_info(files, l % wenv.nb_col + i, wenv);
+			// ft_putbegl("l =");
+			// ft_putnbr(l);
+			// ft_putbegl("nb_col =");
+			// ft_putnbr(wenv.nb_col);
+			// ft_putbegl("i =");
+			// ft_putnbr(i);
+			// ft_putendl("");
+			print_name_t_info(files, i % wenv.nb_col + l * wenv.nb_lines, wenv);
 			l++;
 		}
+		l = 0;
 		ft_putchar('\n');
 		i++;
 	}
@@ -77,11 +88,6 @@ void	print_basic_padding(t_winenv wenv, t_info **files)
 
 // void	adjust_wenv(t_winenv *wenv)
 // {
-	// while (wenv->nb_files % wenv->nb_col > wenv->nb_lines)
-	// {
-	// 	wenv->nb_lines++;
-	// 	wenv->nb_col--;
-	// }
 // }
 
 void	display_basic(t_info **files)
@@ -94,10 +100,27 @@ void	display_basic(t_info **files)
 	ioctl(0, TIOCGWINSZ, &w);
 	win_env.column = w.ws_col;
 	win_env.nb_col = (win_env.column - 1) / (win_env.max_len + 1);
-	if (win_env.nb_col == 7)
-		win_env.nb_col = 6;
-	// adjust_wenv(&win_env);
 	win_env.nb_lines = win_env.nb_files / win_env.nb_col;
+	ft_putstr("largueur = ");
+	ft_putnbr(win_env.column);
+	ft_putbegl("max_len = ");
+	ft_putnbr(win_env.max_len);
+	ft_putbegl("nb_col = ");
+	ft_putnbr(win_env.nb_col);
+	ft_putbegl("nb_lines = ");
+	ft_putnbr(win_env.nb_lines);
+	ft_putbegl("nb_files = ");
+	ft_putnbr(win_env.nb_files);
+	ft_putendl("");
+	// if (win_env.nb_col == 7)
+	// 	win_env.nb_col = 6;
+	// adjust_wenv(&win_env);
+	// win_env.nb_lines--;
+	while (win_env.nb_files % win_env.nb_col >= win_env.nb_lines)
+	{
+		win_env.nb_lines++;
+		win_env.nb_col--;
+	}
 	ft_putstr("largueur = ");
 	ft_putnbr(win_env.column);
 	ft_putbegl("max_len = ");
