@@ -47,16 +47,16 @@ void	print_name_t_info(t_info **files, size_t i, t_winenv wenv)
 
 	tmp = *files;
 	l = 0;
-	// ft_putendl("");
-	// ft_putnbr(i);
-	// ft_putendl("");
-	while (l < i)
+	while (l < i && tmp)
 	{
 		l++;
 		tmp = tmp->next;
 	}
-	ft_putstr(tmp->name);
-	ft_print_char(' ', wenv.max_len - ft_strlen(tmp->name) + 1);
+	if (tmp)
+	{
+		ft_putstr(tmp->name);
+		ft_print_char(' ', wenv.max_len - ft_strlen(tmp->name) + 1);
+	}
 }
 
 void	print_basic_padding(t_winenv wenv, t_info **files)
@@ -70,14 +70,7 @@ void	print_basic_padding(t_winenv wenv, t_info **files)
 	{
 		while (l < wenv.nb_col)
 		{
-			// ft_putbegl("l =");
-			// ft_putnbr(l);
-			// ft_putbegl("nb_col =");
-			// ft_putnbr(wenv.nb_col);
-			// ft_putbegl("i =");
-			// ft_putnbr(i);
-			// ft_putendl("");
-			print_name_t_info(files, i % wenv.nb_col + l * wenv.nb_lines, wenv);
+			print_name_t_info(files, i % wenv.nb_lines + l * wenv.nb_lines, wenv);
 			l++;
 		}
 		l = 0;
@@ -86,22 +79,22 @@ void	print_basic_padding(t_winenv wenv, t_info **files)
 	}
 }
 
-// void	adjust_wenv(t_winenv *wenv)
-// {
-// }
-
 void	display_basic(t_info **files)
 {
 	struct winsize	w;
 	t_winenv		win_env;
+	int				i;
+	int				l;
 
 	win_env.nb_files = get_nb_files(files);
 	win_env.max_len = get_max_strlen(files);
 	ioctl(0, TIOCGWINSZ, &w);
 	win_env.column = w.ws_col;
 	win_env.nb_col = (win_env.column - 1) / (win_env.max_len + 1);
-	win_env.nb_lines = win_env.nb_files / win_env.nb_col;
-	ft_putstr("largueur = ");
+	i = win_env.nb_files / win_env.nb_col;
+	l = win_env.nb_files % win_env.nb_col;
+	win_env.nb_lines = i + (l ? 1 : 0);
+;	/*ft_putstr("largueur = ");
 	ft_putnbr(win_env.column);
 	ft_putbegl("max_len = ");
 	ft_putnbr(win_env.max_len);
@@ -111,17 +104,17 @@ void	display_basic(t_info **files)
 	ft_putnbr(win_env.nb_lines);
 	ft_putbegl("nb_files = ");
 	ft_putnbr(win_env.nb_files);
-	ft_putendl("");
+	ft_putendl("");*/
 	// if (win_env.nb_col == 7)
 	// 	win_env.nb_col = 6;
 	// adjust_wenv(&win_env);
 	// win_env.nb_lines--;
-	while (win_env.nb_files % win_env.nb_col >= win_env.nb_lines)
-	{
-		win_env.nb_lines++;
-		win_env.nb_col--;
-	}
-	ft_putstr("largueur = ");
+	//while (win_env.nb_files % win_env.nb_col >= win_env.nb_lines)
+	//{
+	//	win_env.nb_lines++;
+	//	win_env.nb_col--;
+	//}
+	/*ft_putstr("largueur = ");
 	ft_putnbr(win_env.column);
 	ft_putbegl("max_len = ");
 	ft_putnbr(win_env.max_len);
@@ -131,6 +124,6 @@ void	display_basic(t_info **files)
 	ft_putnbr(win_env.nb_lines);
 	ft_putbegl("nb_files = ");
 	ft_putnbr(win_env.nb_files);
-	ft_putendl("");
+	ft_putendl("");*/
 	print_basic_padding(win_env, files);
 }
