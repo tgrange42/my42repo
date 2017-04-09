@@ -90,7 +90,7 @@ void	display_basic(t_info **files)
 	win_env.max_len = get_max_strlen(files);
 	ioctl(0, TIOCGWINSZ, &w);
 	win_env.column = w.ws_col;
-	win_env.nb_col = (win_env.column - 1) / (win_env.max_len + 1);
+	win_env.nb_col = (win_env.column) / (win_env.max_len + 1);
 	i = win_env.nb_files / win_env.nb_col;
 	l = win_env.nb_files % win_env.nb_col;
 	win_env.nb_lines = i + (l ? 1 : 0);

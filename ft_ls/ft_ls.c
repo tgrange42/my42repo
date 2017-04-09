@@ -32,39 +32,97 @@ char	**clean_args(char **argv, int argc)
 	return (ret);
 }
 
-char	**sort_ascii(char **argv, int argc)
+void	sort_ascii(char **str)
 {
 	int		not_sorted;
 	int		i;
-	char	**ret;
+	char	*tmp;
 
-	ret = clean_args(argv, argc);
 	not_sorted = 1;
 	while (not_sorted)
 	{
 		i = 0;
 		not_sorted = 0;
-		while (ret[i + 1])
+		while (str && str[i + 1])
 		{
-			if (ft_strcmp(ret[i], ret[i + 1]) > 0)
+			if (ft_strcmp(str[i], str[i + 1]) > 0)
 			{
 				not_sorted = 1;
-				ft_swap((void *)ret[i], (void *)ret[i + 1]);
+				tmp = str[i];
+				str[i] = str[i + 1];
+				str[i + 1] = tmp;
 			}
 			i++;
 		}
 	}
+}
+
+/*
+ **	ret[0] = files
+ **	ret[1] = repo
+ **	ret[2] = name error
+ */
+
+char	***sort_args_type(char **argv, int nb, int i)
+{
+	char	***ret;
+	int		j[3];
+
+	j[0] = 0;
+	j[1] = 0;
+	j[2] = 0;
+	if (!(ret = (char ***)ft_memalloc(sizeof(char **) * 4)))
+		return (NULL);
+	if (!(ret[0] = (char **)ft_memalloc(sizeof(char *) * nb)))
+		return (NULL);
+	if (!(ret[1] = (char **)ft_memalloc(sizeof(char *) * nb)))
+		return (NULL);
+	if (!(ret[2] = (char **)ft_memalloc(sizeof(char *) * nb)))
+		return (NULL);
+	while (argv[i])
+	{
+		errno = 0;
+		opendir(argv[i]);
+		if (errno == ENOENT)
+			ret[2][j[0]++] = argv[i++];
+		else if (errno == ENOTDIR)
+			ret[0][j[1]++] = argv[i++];
+		else if (!errno)
+			ret[1][j[2]++] = argv[i++];
+	}
 	return (ret);
+}
+
+void	printlol(char ***lol)
+{
+	int		i;
+	int		l;
+
+	i = 0;
+	while (lol[i])
+	{
+		l = 0;
+		while (lol[i][l])
+			ft_putendl(lol[i][l++]);
+		ft_putendl("");
+		i++;
+	}
 }
 
 int		main(int argc, char **argv)
 {
 	t_flags		flags;
 	char		**clean_arg;
+	char		***all_args;
 
 	initialize_struct_flags(&flags);
 	get_multiple_flags(argv, &flags);
-	clean_arg = sort_ascii(argv, argc);
-	get_multiple_arg(clean_arg, flags);
+	clean_arg = clean_args(argv, argc);
+	all_args = sort_args_type(clean_arg, ft_tablen(clean_arg) + 1, 0);
+	sort_ascii(all_args[0]);
+	sort_ascii(all_args[1]);
+	sort_ascii(all_args[2]);
+	//printlol(all_args);
+	get_multiple_arg(all_args, flags);
 	return (0);
 }

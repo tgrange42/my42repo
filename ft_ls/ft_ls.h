@@ -20,6 +20,7 @@
 # include <grp.h>
 # include <time.h>
 # include <sys/ioctl.h>
+# include <errno.h>
 
 /*
 **	Structs
@@ -92,7 +93,7 @@ size_t				get_nb_files(t_info **files);
 
 void				ft_opendir(t_flags flags, char *name);
 t_info				*create_t_info(char *name_file, int type, char *path);
-void				get_multiple_arg(char **argv, t_flags flags);
+void				get_multiple_arg(char ***argv, t_flags flags);
 
 /*
 **	list_ls.c
