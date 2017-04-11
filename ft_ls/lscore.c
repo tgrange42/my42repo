@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:39:04 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/05 13:03:21 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/11 03:41:29 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	get_multiple_arg(char ***argv, t_flags flags)
 		l++;
 	while (argv[1][i])
 	{
-		if (l > 1)
+		if (l > 1 || argv[0][0] || argv[2][0])
 		{
 			if (i > 0 || argv[0][0])
 				ft_putendl("");

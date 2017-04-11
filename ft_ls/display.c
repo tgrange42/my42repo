@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 18:25:47 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/05 14:57:34 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/11 02:57:51 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	print_dir(t_flags flags, t_info **files)
 	tmp = *files;
 	if (flags.l_flag)
 		display_l_flag(files);
-	if (flags.one_flag)
+	else if (flags.one_flag)
 		display_one_flag(files);
 	else
 		display_basic(files);
