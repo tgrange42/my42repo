@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 18:25:47 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/11 02:57:51 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/12 03:12:31 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_blocks(t_info **lst)
 	ft_putchar('\n');
 }
 
-void	print_type_perms_links_author_grp_size(t_info *infos, size_t *padding)
+void	print_all_specs(t_info *infos, size_t *padding)
 {
 	ft_putchar(infos->type);
 	ft_putstr(infos->perms);
@@ -86,7 +86,7 @@ void	display_l_flag(t_info **infos)
 	print_blocks(infos);
 	while (tmp)
 	{
-		print_type_perms_links_author_grp_size(tmp, padding);
+		print_all_specs(tmp, padding);
 		tmp = tmp->next;
 	}
 }

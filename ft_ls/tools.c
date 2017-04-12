@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 16:28:41 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/05 16:37:17 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/12 01:42:29 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*get_path(char *actual_path, char *dir_name)
 	if (!(path = (char *)ft_memalloc(sizeof(char) * len)))
 		return (NULL);
 	path = ft_strcpy(path, actual_path);
-	path[ft_strlen(actual_path)] = '/';
+	if (!(actual_path[0] == '/' && ft_strlen(actual_path) == 1))
+		path[ft_strlen(actual_path)] = '/';
 	path = ft_strcat(path, dir_name);
 	return (path);
 }

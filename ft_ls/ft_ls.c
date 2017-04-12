@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:40:54 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/05 12:54:31 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/12 03:50:43 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,31 +83,31 @@ char	***sort_args_type(char **argv, int nb, int i)
 	{
 		errno = 0;
 		opendir(argv[i]);
-		if (errno == ENOENT)
+		if (!errno)
+			ret[1][j[2]++] = argv[i++];
+		else if (errno == ENOENT)
 			ret[2][j[0]++] = argv[i++];
 		else if (errno == ENOTDIR)
 			ret[0][j[1]++] = argv[i++];
-		else if (!errno)
-			ret[1][j[2]++] = argv[i++];
 	}
 	return (ret);
 }
 
-void	printlol(char ***lol)
-{
-	int		i;
-	int		l;
+// void	printlol(char ***lol)
+// {
+// 	int		i;
+// 	int		l;
 
-	i = 0;
-	while (lol[i])
-	{
-		l = 0;
-		while (lol[i][l])
-			ft_putendl(lol[i][l++]);
-		ft_putendl("");
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (lol[i])
+// 	{
+// 		l = 0;
+// 		while (lol[i][l])
+// 			ft_putendl(lol[i][l++]);
+// 		ft_putendl("");
+// 		i++;
+// 	}
+// }
 
 int		main(int argc, char **argv)
 {
@@ -122,7 +122,6 @@ int		main(int argc, char **argv)
 	sort_ascii(all_args[0]);
 	sort_ascii(all_args[1]);
 	sort_ascii(all_args[2]);
-	//printlol(all_args);
 	get_multiple_arg(all_args, flags);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 12:57:30 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/05 19:32:08 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/12 03:11:53 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,36 +94,5 @@ void	display_basic(t_info **files)
 	i = win_env.nb_files / win_env.nb_col;
 	l = win_env.nb_files % win_env.nb_col;
 	win_env.nb_lines = i + (l ? 1 : 0);
-;	/*ft_putstr("largueur = ");
-	ft_putnbr(win_env.column);
-	ft_putbegl("max_len = ");
-	ft_putnbr(win_env.max_len);
-	ft_putbegl("nb_col = ");
-	ft_putnbr(win_env.nb_col);
-	ft_putbegl("nb_lines = ");
-	ft_putnbr(win_env.nb_lines);
-	ft_putbegl("nb_files = ");
-	ft_putnbr(win_env.nb_files);
-	ft_putendl("");*/
-	// if (win_env.nb_col == 7)
-	// 	win_env.nb_col = 6;
-	// adjust_wenv(&win_env);
-	// win_env.nb_lines--;
-	//while (win_env.nb_files % win_env.nb_col >= win_env.nb_lines)
-	//{
-	//	win_env.nb_lines++;
-	//	win_env.nb_col--;
-	//}
-	/*ft_putstr("largueur = ");
-	ft_putnbr(win_env.column);
-	ft_putbegl("max_len = ");
-	ft_putnbr(win_env.max_len);
-	ft_putbegl("nb_col = ");
-	ft_putnbr(win_env.nb_col);
-	ft_putbegl("nb_lines = ");
-	ft_putnbr(win_env.nb_lines);
-	ft_putbegl("nb_files = ");
-	ft_putnbr(win_env.nb_files);
-	ft_putendl("");*/
 	print_basic_padding(win_env, files);
 }

@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 16:07:30 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/04 15:46:46 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/12 03:15:01 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,19 @@ char	get_type(struct stat buf)
 {
 	if (buf.st_mode & S_IFIFO)
 		return ('F');
-	else if (buf.st_mode & S_IFDIR)
+	if (buf.st_mode & S_IFDIR)
 		return ('d');
-	else if (buf.st_mode & S_IFREG)
+	if (buf.st_mode & S_IFREG)
 		return ('-');
-	else if (buf.st_mode & S_IFLNK)
+	if (buf.st_mode & S_IFLNK)
 		return ('l');
-	else if (buf.st_mode & S_IFSOCK)
+	if (buf.st_mode & S_IFSOCK)
 		return ('s');
-	else if (buf.st_mode & S_IFWHT)
+	if (buf.st_mode & S_IFWHT)
 		return ('W');
-	else if (buf.st_mode & S_IFBLK)
+	if (buf.st_mode & S_IFBLK)
 		return ('B');
-	else if (buf.st_mode & S_IFCHR)
+	if (buf.st_mode & S_IFCHR)
 		return ('c');
 	return ('-');
 }
