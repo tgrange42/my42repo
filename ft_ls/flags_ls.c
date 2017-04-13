@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:59:08 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/05 13:24:35 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 02:12:26 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_flags(t_flags *stock, char *flags, int i)
 {
 	while (flags[i])
 	{
-		if (ft_strchr("Ralrt1", (int)flags[i]) == NULL)
+		if (ft_strchr("Ralprt1", (int)flags[i]) == NULL)
 			exit_error(1, flags[i]);
 		if (flags[i] == 'R')
 			stock->grand_r_flag = 1;
@@ -36,6 +36,8 @@ void	get_flags(t_flags *stock, char *flags, int i)
 			stock->r_flag = 1;
 		if (flags[i] == 't')
 			stock->t_flag = 1;
+		if (flags[i] == 'p')
+			stock->p_flag = 1;
 		if (flags[i] == 'l')
 		{
 			stock->one_flag = 0;

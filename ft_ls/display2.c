@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 12:57:30 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/12 03:11:53 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 02:56:58 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ size_t	get_max_strlen(t_info **files)
 	return (max);
 }
 
-void	print_name_t_info(t_info **files, size_t i, t_winenv wenv)
+void	print_name_t_info(t_info **files, size_t i, t_winenv wenv, t_flags flags)
 {
 	size_t	l;
 	t_info	*tmp;
+	int		j;
 
 	tmp = *files;
 	l = 0;
@@ -54,12 +55,18 @@ void	print_name_t_info(t_info **files, size_t i, t_winenv wenv)
 	}
 	if (tmp)
 	{
+		j = ft_strlen(tmp->name);
 		ft_putstr(tmp->name);
-		ft_print_char(' ', wenv.max_len - ft_strlen(tmp->name) + 1);
+		if (flags.p_flag && tmp->type == 'd')
+		{
+			j++;
+			ft_putchar('/');
+		}
+		ft_print_char(' ', wenv.max_len - j + 1);
 	}
 }
 
-void	print_basic_padding(t_winenv wenv, t_info **files)
+void	print_basic_padding(t_winenv wenv, t_info **files, t_flags flags)
 {
 	size_t	i;
 	size_t	l;
@@ -70,7 +77,8 @@ void	print_basic_padding(t_winenv wenv, t_info **files)
 	{
 		while (l < wenv.nb_col)
 		{
-			print_name_t_info(files, i % wenv.nb_lines + l * wenv.nb_lines, wenv);
+			print_name_t_info(files, i % wenv.nb_lines + l *
+				wenv.nb_lines, wenv, flags);
 			l++;
 		}
 		l = 0;
@@ -79,7 +87,7 @@ void	print_basic_padding(t_winenv wenv, t_info **files)
 	}
 }
 
-void	display_basic(t_info **files)
+void	display_basic(t_info **files, t_flags flags)
 {
 	struct winsize	w;
 	t_winenv		win_env;
@@ -94,5 +102,5 @@ void	display_basic(t_info **files)
 	i = win_env.nb_files / win_env.nb_col;
 	l = win_env.nb_files % win_env.nb_col;
 	win_env.nb_lines = i + (l ? 1 : 0);
-	print_basic_padding(win_env, files);
+	print_basic_padding(win_env, files, flags);
 }

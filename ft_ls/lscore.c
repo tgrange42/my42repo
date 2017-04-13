@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:39:04 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/12 03:53:04 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 07:29:02 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ t_info	*get_files_names(char *path, t_flags flags, char *name)
 
 	ret = NULL;
 	stream = opendir(path);
-	if (errno == EACCES)
+	errno = 0;
+	if (errno)
 	{
-		write_error(name);
+		write_error(name, errno);
 		return (NULL);
 	}
 	while ((list = readdir(stream)) != NULL)
@@ -68,7 +69,7 @@ void	ft_opendir(t_flags flags, char *name, t_info *infos, char *pure_name)
 		rev_list(&infos);
 	if (flags.l_flag)
 		collect_infos(&infos);
-	print_dir(flags, &infos);
+	print_dir(flags, &infos, 1);
 	if (flags.grand_r_flag)
 		recursive_ls(&infos, flags);
 	clean_t_info(&infos, flags);
@@ -81,13 +82,14 @@ void	files_not_repo(char **names, t_flags flags)
 	t_info		*tmp;
 
 	if (!names[0])
-	return ;	
+		return ;
 	files = NULL;
 	i = 0;
 	while (names[i])
 	{
-		tmp = create_t_info(names[i++], 0, ".");
+		tmp = create_t_info(names[i], 0, names[i]);
 		pushback_t_info(tmp, &files);
+		i++;
 	}
 	if (flags.t_flag)
 		sort_list_time(&files);
@@ -95,7 +97,7 @@ void	files_not_repo(char **names, t_flags flags)
 		rev_list(&files);
 	if (flags.l_flag)
 		collect_infos(&files);
-	print_dir(flags, &files);
+	print_dir(flags, &files, 0);
 }
 
 void	get_multiple_arg(char ***argv, t_flags flags)

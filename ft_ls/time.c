@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 11:44:01 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/04 15:46:40 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 05:17:02 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char		**get_time_char(char *name, time_t *int_date)
 
 	lstat(name, &buf);
 	time = buf.st_mtimespec.tv_sec;
-	date[26] = '\0';
+	date[25] = '\0';
 	ft_strcpy(date, ctime(&time));
 	*int_date = time;
 	return (ft_strsplit(date, ' '));

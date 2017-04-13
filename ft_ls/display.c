@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 18:25:47 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/12 03:12:31 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 06:59:25 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,54 +52,64 @@ void	print_blocks(t_info **lst)
 	ft_putchar('\n');
 }
 
-void	print_all_specs(t_info *infos, size_t *padding)
+void	print_all_specs(t_info *infos, size_t *padding, t_flags flags)
 {
 	ft_putchar(infos->type);
 	ft_putstr(infos->perms);
-	ft_print_char(' ', padding[0] - ft_strlen(infos->links) + 2);
-	ft_putstr(infos->links);
-	ft_putchar(' ');
+	ft_print_char(' ', padding[0] - ft_strlen(infos->links) + 1);
+	ft_putstr_space(infos->links);
 	ft_putstr(infos->author);
 	ft_print_char(' ', padding[1] - ft_strlen(infos->author) + 2);
 	ft_putstr(infos->grp);
 	ft_print_char(' ', padding[2] - ft_strlen(infos->grp) + 2);
 	ft_print_char(' ', padding[3] - ft_strlen(infos->size));
-	ft_putstr(infos->size);
-	ft_putchar(' ');
+	ft_putstr_space(infos->size);
 	ft_putstr(infos->date[1]);
 	ft_print_char(' ', 3 - ft_strlen(infos->date[2]));
-	ft_putstr(infos->date[2]);
-	ft_putchar(' ');
-	ft_putstr(infos->date[3]);
-	ft_putchar(' ');
+	ft_putstr_space(infos->date[2]);
+	if (infos->date_int + 15778800 < time(NULL))
+	{
+		ft_putchar(' ');
+		ft_putstr_space(infos->date[4]);
+	}
+	else
+		ft_putstr_space(infos->date[3]);
 	ft_putstr(infos->name);
+	if (flags.p_flag && infos->type == 'd')
+		ft_putchar('/');
+	if (infos->type == 'l')
+	{
+		ft_putstr(" -> ");
+		ft_putstr(infos->linked_file);
+	}
 	ft_putchar('\n');
 }
 
-void	display_l_flag(t_info **infos)
+void	display_l_flag(t_info **infos, int printb, t_flags flags)
 {
 	t_info	*tmp;
 	size_t	*padding;
 
 	padding = get_padding(infos);
 	tmp = *infos;
-	print_blocks(infos);
+	if (printb)
+		print_blocks(infos);
 	while (tmp)
 	{
-		print_all_specs(tmp, padding);
+		print_all_specs(tmp, padding, flags);
 		tmp = tmp->next;
 	}
 }
 
-void	print_dir(t_flags flags, t_info **files)
+void	print_dir(t_flags flags, t_info **files, int printb)
 {
 	t_info		*tmp;
 
 	tmp = *files;
 	if (flags.l_flag)
-		display_l_flag(files);
+		display_l_flag(files, printb, flags);
 	else if (flags.one_flag)
 		display_one_flag(files);
 	else
-		display_basic(files);
+		display_basic(files, flags);
 }

@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:31:31 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/12 02:58:13 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 07:28:17 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <time.h>
 # include <sys/ioctl.h>
 # include <errno.h>
+# include <unistd.h>
+# include <sys/xattr.h>
+# include <stdio.h>
 
 /*
 **	Structs
@@ -34,6 +37,7 @@ typedef struct		s_flags
 	int				r_flag;
 	int				t_flag;
 	int				one_flag;
+	int				p_flag;
 }					t_flags;
 
 typedef struct		s_winenv
@@ -56,6 +60,7 @@ typedef struct		s_info
 	char			*size;
 	char			*links;
 	char			**date;
+	char			*linked_file;
 	size_t			blocks;
 	time_t			date_int;
 	struct s_info	*next;
@@ -73,7 +78,7 @@ void				sort_list_time(t_info **lst);
 */
 
 void				exit_error(int type_of_error, char wrong_flag);
-void				write_error(char *name_folder);
+void				write_error(char *name_folder, int erreur);
 void				not_file(char **name);
 
 /*
@@ -94,7 +99,8 @@ size_t				get_nb_files(t_info **files);
 **	lscore.c
 */
 
-void				ft_opendir(t_flags flags, char *name, t_info *infos, char *pure_name);
+void				ft_opendir(t_flags flags, char *name, t_info *infos,
+	char *pure_name);
 t_info				*create_t_info(char *name_file, int type, char *path);
 void				get_multiple_arg(char ***argv, t_flags flags);
 
@@ -118,13 +124,14 @@ void				collect_infos(t_info **lst);
 */
 
 void				display_it(t_info **files);
+void				print_dir(t_flags flags, t_info **files, int printb);
 
 /*
 **	display2.c
 */
 
-void				print_dir(t_flags flags, t_info **files);
 void				display_one_flag(t_info **files);
+void				display_basic(t_info **files, t_flags flags);
 
 /*
 **	clean_ls.c
@@ -132,6 +139,5 @@ void				display_one_flag(t_info **files);
 
 void				clean_t_info(t_info **lst, t_flags flags);
 void				next_rm(t_info **lst);
-void				display_basic(t_info **files);
 
 #endif

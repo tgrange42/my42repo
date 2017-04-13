@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:40:54 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/12 03:50:43 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 04:38:52 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**clean_args(char **argv, int argc)
 
 	i = 0;
 	nb = 1;
-	while (argv[nb] && argv[nb][0] == '-')
+	while (argv[nb] && argv[nb][0] == '-' && argv[nb][1])
 		nb++;
 	if (!(ret = (char **)ft_memalloc(sizeof(ret) * (argc - nb + 2))))
 		return (NULL);
@@ -58,19 +58,19 @@ void	sort_ascii(char **str)
 }
 
 /*
- **	ret[0] = files
- **	ret[1] = repo
- **	ret[2] = name error
- */
+**	ret[0] = files
+**	ret[1] = repo
+**	ret[2] = name error
+*/
 
-char	***sort_args_type(char **argv, int nb, int i)
+char	***sort_args_type(char **argv, int nb, int i, int *j)
 {
 	char	***ret;
-	int		j[3];
+	// int		j[3];
 
-	j[0] = 0;
-	j[1] = 0;
-	j[2] = 0;
+	// j[0] = 0;
+	// j[1] = 0;
+	// j[2] = 0;
 	if (!(ret = (char ***)ft_memalloc(sizeof(char **) * 4)))
 		return (NULL);
 	if (!(ret[0] = (char **)ft_memalloc(sizeof(char *) * nb)))
@@ -93,32 +93,20 @@ char	***sort_args_type(char **argv, int nb, int i)
 	return (ret);
 }
 
-// void	printlol(char ***lol)
-// {
-// 	int		i;
-// 	int		l;
-
-// 	i = 0;
-// 	while (lol[i])
-// 	{
-// 		l = 0;
-// 		while (lol[i][l])
-// 			ft_putendl(lol[i][l++]);
-// 		ft_putendl("");
-// 		i++;
-// 	}
-// }
-
 int		main(int argc, char **argv)
 {
 	t_flags		flags;
 	char		**clean_arg;
 	char		***all_args;
+	int			tab[3];
 
+	tab[0] = 0;
+	tab[1] = 0;
+	tab[2] = 0;
 	initialize_struct_flags(&flags);
 	get_multiple_flags(argv, &flags);
 	clean_arg = clean_args(argv, argc);
-	all_args = sort_args_type(clean_arg, ft_tablen(clean_arg) + 1, 0);
+	all_args = sort_args_type(clean_arg, ft_tablen(clean_arg) + 1, 0, tab);
 	sort_ascii(all_args[0]);
 	sort_ascii(all_args[1]);
 	sort_ascii(all_args[2]);

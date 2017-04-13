@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 12:26:57 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/12 02:57:55 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 02:56:59 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	clean_tab(char ***tab)
 		while (**tab)
 			ft_strdel(*tab);
 	}
-	free(*tab);
 }
 
 void	rm_t_info(t_info *lst)
@@ -63,17 +62,4 @@ void	next_rm(t_info **lst)
 	tmp = tmp->next;
 	rm_t_info(*lst);
 	*lst = tmp;
-}
-
-void	not_file(char **name)
-{
-	int		i;
-
-	i = 0;
-	while (name[i])
-	{
-		ft_putstr("ls: ");
-		ft_putstr(name[i++]);
-		ft_putendl(": No such file or directory");
-	}
 }

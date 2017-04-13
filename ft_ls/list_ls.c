@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 11:57:40 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/04 15:46:54 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 06:59:53 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_info	*create_t_info(char *name_file, int type, char *path)
 	if (!(tmp = (t_info *)ft_memalloc(sizeof(t_info))))
 		return (NULL);
 	tmp->name = ft_strdup(name_file);
-	tmp->perms = ft_strdup("---------\0");
+	tmp->perms = ft_strdup("--------- \0");
 	tmp->path = path;
 	if (type == 4)
 		tmp->type = 'd';

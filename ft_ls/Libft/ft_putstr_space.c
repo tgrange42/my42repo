@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_space.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/14 01:22:02 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/13 01:05:14 by tgrange          ###   ########.fr       */
+/*   Created: 2017/04/13 04:59:55 by tgrange           #+#    #+#             */
+/*   Updated: 2017/04/13 05:00:38 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_tablen(char **tab)
+void	ft_putstr_space(char *str)
 {
-	int		ret;
-
-	ret = 0;
-	while (tab[ret])
-		ret++;
-	return (ret);
+	ft_putstr(str);
+	ft_putchar(' ');
 }
