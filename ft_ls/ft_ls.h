@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:31:31 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/13 07:28:17 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/18 14:14:16 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void				sort_list_time(t_info **lst);
 */
 
 void				exit_error(int type_of_error, char wrong_flag);
-void				write_error(char *name_folder, int erreur);
+void				write_error(char *name_folder, char *error);
 void				not_file(char **name);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:49:54 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/13 07:31:43 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/18 14:13:56 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ void	exit_error(int type_of_error, char wrong_flag)
 	}
 }
 
-void	write_error(char *name_folder, int erreur)
+void	write_error(char *name_folder, char *error)
 {
 	ft_putstr("ls: ");
 	ft_putstr(name_folder);
-	if (erreur == EACCES)
-		ft_putendl(": Permission denied");
-	if (erreur == EBADF)
-		ft_putendl(": Bad file descriptor");
+	ft_putendl(error);
+	// if (erreur == EACCES)
+	// 	ft_putendl(": Permission denied");
+	// if (erreur == EBADF)
+	// 	ft_putendl(": Bad file descriptor");
 }
 
 void	not_file(char **name)

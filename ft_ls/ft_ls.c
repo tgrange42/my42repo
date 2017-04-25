@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:40:54 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/13 04:38:52 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/25 17:02:42 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,7 @@ void	sort_ascii(char **str)
 char	***sort_args_type(char **argv, int nb, int i, int *j)
 {
 	char	***ret;
-	// int		j[3];
 
-	// j[0] = 0;
-	// j[1] = 0;
-	// j[2] = 0;
 	if (!(ret = (char ***)ft_memalloc(sizeof(char **) * 4)))
 		return (NULL);
 	if (!(ret[0] = (char **)ft_memalloc(sizeof(char *) * nb)))
@@ -83,7 +79,7 @@ char	***sort_args_type(char **argv, int nb, int i, int *j)
 	{
 		errno = 0;
 		opendir(argv[i]);
-		if (!errno)
+		if (!errno || errno == EACCES)
 			ret[1][j[2]++] = argv[i++];
 		else if (errno == ENOENT)
 			ret[2][j[0]++] = argv[i++];

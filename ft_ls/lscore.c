@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:39:04 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/13 07:29:02 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/18 14:16:14 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ t_info	*get_files_names(char *path, t_flags flags, char *name)
 	t_info			*ret;
 
 	ret = NULL;
-	stream = opendir(path);
 	errno = 0;
+	stream = opendir(path);
 	if (errno)
 	{
-		write_error(name, errno);
+		write_error(name, strerror(errno));
 		return (NULL);
 	}
 	while ((list = readdir(stream)) != NULL)
