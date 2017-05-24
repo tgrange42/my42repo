@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 17:30:54 by tgrange           #+#    #+#             */
-/*   Updated: 2017/05/24 14:31:45 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/05/24 16:26:18 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ int		main(int argc, char **argv)
 	clean_tab(&all_args[0]);
 	clean_tab(&all_args[1]);
 	clean_tab(&all_args[2]);
-	free(all_args);
+	// free(all_args);
+	// while (1)
+	// 	;
 	return (0);
 }

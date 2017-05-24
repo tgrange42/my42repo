@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 12:26:57 by tgrange           #+#    #+#             */
-/*   Updated: 2017/05/24 12:21:33 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/05/24 15:59:31 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	clean_tab(char ***tab)
 		while (**tab)
 			ft_strdel(*tab);
 	}
-	free(*tab);
+	// free(*tab);
 }
 
 void	clean_tabn(char ***tab, int n)
@@ -32,7 +32,7 @@ void	clean_tabn(char ***tab, int n)
 		while (i < n)
 			ft_strdel(tab[i++]);
 	}
-	free(*tab);
+	// free(*tab);
 }
 
 void	rm_t_info(t_info *lst)
