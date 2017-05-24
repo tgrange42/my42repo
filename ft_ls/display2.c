@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 12:57:30 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/25 17:06:09 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/05/22 16:43:45 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ size_t	get_max_strlen(t_info **files)
 	return (max);
 }
 
-void	print_name_t_info(t_info **files, size_t i, t_winenv wenv, t_flags flags)
+void	print_name_t_info(t_info **files, size_t i, t_winenv wenv,
+	t_flags flags)
 {
 	size_t	l;
 	t_info	*tmp;
@@ -99,9 +100,9 @@ void	display_basic(t_info **files, t_flags flags)
 	win_env.max_len = get_max_strlen(files);
 	ioctl(0, TIOCGWINSZ, &w);
 	win_env.column = w.ws_col;
- 	win_env.nb_col = (win_env.column) / (win_env.max_len + 1);
- 	if (!win_env.nb_col)
- 		win_env.nb_col = 1;
+	win_env.nb_col = (win_env.column) / (win_env.max_len + 1);
+	if (!win_env.nb_col)
+		win_env.nb_col = 1;
 	i = win_env.nb_files / win_env.nb_col;
 	l = win_env.nb_files % win_env.nb_col;
 	win_env.nb_lines = i + (l ? 1 : 0);

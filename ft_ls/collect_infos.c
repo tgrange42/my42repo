@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 16:07:30 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/13 07:51:35 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/05/22 16:54:29 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,26 @@ char	get_type(struct stat buf)
 		return ('p');
 	if (S_ISSOCK(buf.st_mode))
 		return ('s');
-	if (S_ISWHT(buf.st_mode))
-		return ('-');
 	return ('-');
 }
 
-void	get_acl(t_info *infos)
+void	get_fifo(t_info *lst, struct stat buf)
 {
-	int		ret;
+	int		i;
+	char	*tmp;
 
-	errno = 0;
-	ret = listxattr(infos->path, NULL, 0, XATTR_NOFOLLOW);
-	if (!ret)
-		return ;
-	else if (ret > 0)
-		infos->perms[9] = '@';
+	lst->major = ft_itoa(major(buf.st_rdev));
+	i = ft_strlen(lst->major);
+	if (!(tmp = (char *)ft_memalloc(sizeof(char) * (i + 2))))
+		return;
+	tmp = ft_strcpy(tmp, lst->major);
+	tmp[i] = ',';
+	ft_strdel(&lst->major);
+	lst->major = tmp;
+	lst->size = ft_itoa(minor(buf.st_rdev));
 }
 
-void	collect_infos(t_info **lst)
+void	collect_infos(t_info **lst, t_flags flags)
 {
 	t_info			*tmp;
 	struct stat		buf;
@@ -95,16 +97,19 @@ void	collect_infos(t_info **lst)
 		lstat(tmp->path, &buf);
 		get_group_author(buf, tmp);
 		get_perms(buf, tmp->perms);
-		tmp->size = ft_itoa(buf.st_size);
-		tmp->links = ft_itoa(buf.st_nlink);
 		tmp->type = get_type(buf);
-		tmp->date = get_time_char(tmp->path, &tmp->date_int);
+		if (tmp->type == 'c' || tmp->type == 'b' || tmp->type == 'p')
+			get_fifo(tmp, buf);
+		else
+			tmp->size = ft_itoa(buf.st_size);
+		tmp->links = ft_itoa(buf.st_nlink);
+		tmp->date = get_time_char(tmp->path, &tmp->date_int,
+			flags.grand_u_flag);
 		tmp->date[3][5] = '\0';
 		tmp->date[4][4] = '\0';
 		if (!(tmp->linked_file = (char *)ft_memalloc(sizeof(char) * 151)))
 			return ;
 		readlink(tmp->path, tmp->linked_file, 150);
-		get_acl(tmp);
 		tmp = tmp->next;
 	}
 }

@@ -1,0 +1,5 @@
+1:
+ls -G -R /  4.72s user 11.61s system 40% cpu 40.319 total
+./ft_ls -R /  15.49s user 16.62s system 51% cpu 1:02.22 total
+
+2:

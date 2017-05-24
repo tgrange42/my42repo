@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:31:31 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/18 14:14:16 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/05/23 16:20:49 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 typedef struct		s_flags
 {
 	int				grand_r_flag;
+	int				grand_u_flag;
 	int				a_flag;
 	int				l_flag;
 	int				r_flag;
@@ -57,6 +58,7 @@ typedef struct		s_info
 	char			*grp;
 	char			*author;
 	char			*perms;
+	char			*major;
 	char			*size;
 	char			*links;
 	char			**date;
@@ -70,8 +72,8 @@ typedef struct		s_info
 **	time.c
 */
 
-char				**get_time_char(char *name, time_t *int_date);
-void				sort_list_time(t_info **lst);
+char				**get_time_char(char *name, time_t *int_date, int birth);
+void				sort_list_time(t_info **lst, t_flags flags);
 
 /*
 **	error_ls.c
@@ -79,7 +81,7 @@ void				sort_list_time(t_info **lst);
 
 void				exit_error(int type_of_error, char wrong_flag);
 void				write_error(char *name_folder, char *error);
-void				not_file(char **name);
+void				not_file(char **name, int nb);
 
 /*
 **	flags_ls.c
@@ -102,7 +104,7 @@ size_t				get_nb_files(t_info **files);
 void				ft_opendir(t_flags flags, char *name, t_info *infos,
 	char *pure_name);
 t_info				*create_t_info(char *name_file, int type, char *path);
-void				get_multiple_arg(char ***argv, t_flags flags);
+void				get_multiple_arg(char ***argv, t_flags flags, int nb);
 
 /*
 **	list_ls.c
@@ -117,7 +119,7 @@ void				swap_t_info(t_info *m1, t_info *m2);
 **	collect_infos.c
 */
 
-void				collect_infos(t_info **lst);
+void				collect_infos(t_info **lst, t_flags flags);
 
 /*
 **	display.c
@@ -134,10 +136,18 @@ void				display_one_flag(t_info **files);
 void				display_basic(t_info **files, t_flags flags);
 
 /*
+**	display3.c
+*/
+
+size_t				*get_padding(t_info **infos);
+
+/*
 **	clean_ls.c
 */
 
 void				clean_t_info(t_info **lst, t_flags flags);
 void				next_rm(t_info **lst);
+void				clean_tab(char ***tab);
+void				clean_tabn(char ***tab, int nb);
 
 #endif

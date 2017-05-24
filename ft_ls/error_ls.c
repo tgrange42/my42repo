@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:49:54 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/18 14:13:56 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/05/23 17:26:49 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	exit_error(int type_of_error, char wrong_flag)
 	{
 		ft_putstr("ls: illegal option -- ");
 		ft_putchar(wrong_flag);
-		ft_putendl("\nusage: ls [-Ralprt1] [file ...]");
+		ft_putendl("\nusage: ls [-RUalprt1] [file ...]");
 		exit(1);
 	}
 }
@@ -29,13 +29,9 @@ void	write_error(char *name_folder, char *error)
 	ft_putstr("ls: ");
 	ft_putstr(name_folder);
 	ft_putendl(error);
-	// if (erreur == EACCES)
-	// 	ft_putendl(": Permission denied");
-	// if (erreur == EBADF)
-	// 	ft_putendl(": Bad file descriptor");
 }
 
-void	not_file(char **name)
+void	not_file(char **name, int nb)
 {
 	int		i;
 
@@ -46,4 +42,6 @@ void	not_file(char **name)
 		ft_putstr(name[i++]);
 		ft_putendl(": No such file or directory");
 	}
+	(void)nb;
+	// clean_tabn(&name, nb);
 }

@@ -6,34 +6,11 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 18:25:47 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/13 06:59:25 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/05/22 16:59:53 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-size_t	*get_padding(t_info **infos)
-{
-	t_info		*tmp;
-	size_t		*ret;
-
-	if (!(ret = (size_t *)ft_memalloc(sizeof(size_t) * 4)))
-		return (NULL);
-	tmp = *infos;
-	while (tmp)
-	{
-		if (ft_strlen(tmp->links) > ret[0])
-			ret[0] = ft_strlen(tmp->links);
-		if (ft_strlen(tmp->author) > ret[1])
-			ret[1] = ft_strlen(tmp->author);
-		if (ft_strlen(tmp->grp) > ret[2])
-			ret[2] = ft_strlen(tmp->grp);
-		if (ft_strlen(tmp->size) > ret[3])
-			ret[3] = ft_strlen(tmp->size);
-		tmp = tmp->next;
-	}
-	return (ret);
-}
 
 void	print_blocks(t_info **lst)
 {
@@ -52,21 +29,8 @@ void	print_blocks(t_info **lst)
 	ft_putchar('\n');
 }
 
-void	print_all_specs(t_info *infos, size_t *padding, t_flags flags)
+void	print_all_specs2(t_info *infos, t_flags flags)
 {
-	ft_putchar(infos->type);
-	ft_putstr(infos->perms);
-	ft_print_char(' ', padding[0] - ft_strlen(infos->links) + 1);
-	ft_putstr_space(infos->links);
-	ft_putstr(infos->author);
-	ft_print_char(' ', padding[1] - ft_strlen(infos->author) + 2);
-	ft_putstr(infos->grp);
-	ft_print_char(' ', padding[2] - ft_strlen(infos->grp) + 2);
-	ft_print_char(' ', padding[3] - ft_strlen(infos->size));
-	ft_putstr_space(infos->size);
-	ft_putstr(infos->date[1]);
-	ft_print_char(' ', 3 - ft_strlen(infos->date[2]));
-	ft_putstr_space(infos->date[2]);
 	if (infos->date_int + 15778800 < time(NULL))
 	{
 		ft_putchar(' ');
@@ -83,6 +47,32 @@ void	print_all_specs(t_info *infos, size_t *padding, t_flags flags)
 		ft_putstr(infos->linked_file);
 	}
 	ft_putchar('\n');
+}
+
+void	print_all_specs(t_info *infos, size_t *padding, t_flags flags)
+{
+	ft_putchar(infos->type);
+	ft_putstr(infos->perms);
+	ft_print_char(' ', padding[0] - ft_strlen(infos->links) + 1);
+	ft_putstr_space(infos->links);
+	ft_putstr(infos->author);
+	ft_print_char(' ', padding[1] - ft_strlen(infos->author) + 2);
+	ft_putstr(infos->grp);
+	ft_print_char(' ', padding[2] - ft_strlen(infos->grp) + 2);
+	if (padding[4])
+	{
+		ft_print_char(' ', padding[4] + 1 - ft_strlen(infos->major));
+		if (infos->major)
+			ft_putstr_space(infos->major);
+		else
+			ft_putchar(' ');
+	}
+	ft_print_char(' ', padding[3] - ft_strlen(infos->size));
+	ft_putstr_space(infos->size);
+	ft_putstr(infos->date[1]);
+	ft_print_char(' ', 3 - ft_strlen(infos->date[2]));
+	ft_putstr_space(infos->date[2]);
+	print_all_specs2(infos, flags);
 }
 
 void	display_l_flag(t_info **infos, int printb, t_flags flags)

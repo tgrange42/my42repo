@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 11:40:54 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/25 17:02:42 by tgrange          ###   ########.fr       */
+/*   Created: 2017/05/23 17:30:54 by tgrange           #+#    #+#             */
+/*   Updated: 2017/05/24 14:31:45 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	sort_ascii(char **str)
 char	***sort_args_type(char **argv, int nb, int i, int *j)
 {
 	char	***ret;
+	DIR		*trash;
 
 	if (!(ret = (char ***)ft_memalloc(sizeof(char **) * 4)))
 		return (NULL);
@@ -78,14 +79,17 @@ char	***sort_args_type(char **argv, int nb, int i, int *j)
 	while (argv[i])
 	{
 		errno = 0;
-		opendir(argv[i]);
+		trash = opendir(argv[i]);
 		if (!errno || errno == EACCES)
 			ret[1][j[2]++] = argv[i++];
 		else if (errno == ENOENT)
 			ret[2][j[0]++] = argv[i++];
 		else if (errno == ENOTDIR)
 			ret[0][j[1]++] = argv[i++];
+		if (trash)
+			closedir(trash);
 	}
+	// clean_tab(&argv);
 	return (ret);
 }
 
@@ -106,6 +110,10 @@ int		main(int argc, char **argv)
 	sort_ascii(all_args[0]);
 	sort_ascii(all_args[1]);
 	sort_ascii(all_args[2]);
-	get_multiple_arg(all_args, flags);
+	get_multiple_arg(all_args, flags, ft_tablen(clean_arg) + 1);
+	clean_tab(&all_args[0]);
+	clean_tab(&all_args[1]);
+	clean_tab(&all_args[2]);
+	free(all_args);
 	return (0);
 }
