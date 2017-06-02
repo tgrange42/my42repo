@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:31:31 by tgrange           #+#    #+#             */
-/*   Updated: 2017/05/23 16:20:49 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/06/02 17:14:32 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ size_t				get_nb_files(t_info **files);
 
 void				ft_opendir(t_flags flags, char *name, t_info *infos,
 	char *pure_name);
-t_info				*create_t_info(char *name_file, int type, char *path);
 void				get_multiple_arg(char ***argv, t_flags flags, int nb);
 
 /*
@@ -114,12 +113,14 @@ void				rev_list(t_info **lst);
 void				sort_list_alpha(t_info **begin_lst);
 void				pushback_t_info(t_info *new, t_info **begin);
 void				swap_t_info(t_info *m1, t_info *m2);
+t_info				*create_t_info(char *name_file, char *path);
 
 /*
 **	collect_infos.c
 */
 
 void				collect_infos(t_info **lst, t_flags flags);
+char				get_type(struct stat buf);
 
 /*
 **	display.c

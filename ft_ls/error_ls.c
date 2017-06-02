@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:49:54 by tgrange           #+#    #+#             */
-/*   Updated: 2017/05/23 17:26:49 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/06/02 17:15:36 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	write_error(char *name_folder, char *error)
 {
 	ft_putstr("ls: ");
 	ft_putstr(name_folder);
+	ft_putstr(": ");
 	ft_putendl(error);
 }
 

@@ -6,18 +6,18 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:39:04 by tgrange           #+#    #+#             */
-/*   Updated: 2017/05/23 17:34:49 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/06/02 17:14:46 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_info	*get_files_names(char *path, t_flags flags, char *name)
+t_info	*get_files_names(char *path, t_flags flags, char *name, DIR *stream)
 {
-	DIR				*stream;
 	struct dirent	*list;
 	t_info			*tmp;
 	t_info			*ret;
+	// struct stat		trash;
 
 	ret = NULL;
 	errno = 0;
@@ -31,8 +31,10 @@ t_info	*get_files_names(char *path, t_flags flags, char *name)
 	{
 		if (list->d_name[0] != '.' || flags.a_flag)
 		{
-			tmp = create_t_info(list->d_name, list->d_type, get_path(path,
+			tmp = create_t_info(list->d_name, get_path(path,
 				list->d_name));
+			// lstat(tmp->path, &trash);
+			// tmp->type = get_type(trash);
 			pushback_t_info(tmp, &ret);
 		}
 	}
@@ -60,7 +62,7 @@ void	recursive_ls(t_info **infos, t_flags flags)
 
 void	ft_opendir(t_flags flags, char *name, t_info *infos, char *pure_name)
 {
-	if (!(infos = get_files_names(name, flags, pure_name)))
+	if (!(infos = get_files_names(name, flags, pure_name, NULL)))
 		return ;
 	sort_list_alpha(&infos);
 	if (flags.t_flag)
@@ -87,7 +89,7 @@ void	files_not_repo(char **names, t_flags flags, int nb)
 	i = 0;
 	while (names[i])
 	{
-		tmp = create_t_info(names[i], 0, names[i]);
+		tmp = create_t_info(names[i], names[i]);
 		pushback_t_info(tmp, &files);
 		i++;
 	}
@@ -98,7 +100,6 @@ void	files_not_repo(char **names, t_flags flags, int nb)
 	if (flags.l_flag)
 		collect_infos(&files, flags);
 	(void)nb;
-	// clean_tabn(&names, nb);
 	print_dir(flags, &files, 0);
 }
 
@@ -123,6 +124,4 @@ void	get_multiple_arg(char ***argv, t_flags flags, int nb)
 		ft_opendir(flags, argv[1][i], NULL, argv[1][i]);
 		i++;
 	}
-	// clean_tabn(&argv[1], nb);
-	// free(argv);
 }

@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 11:57:40 by tgrange           #+#    #+#             */
-/*   Updated: 2017/05/22 16:43:48 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/06/02 17:15:00 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,18 @@ void	sort_list_alpha(t_info **begin_lst)
 	}
 }
 
-t_info	*create_t_info(char *name_file, int type, char *path)
+t_info	*create_t_info(char *name_file, char *path)
 {
-	t_info	*tmp;
+	t_info			*tmp;
+	struct stat		gettype;
 
 	if (!(tmp = (t_info *)ft_memalloc(sizeof(t_info))))
 		return (NULL);
+	lstat(path, &gettype);
 	tmp->name = ft_strdup(name_file);
 	tmp->perms = ft_strdup("---------\0");
+	tmp->type = get_type(gettype);
 	tmp->path = path;
-	if (type == 4)
-		tmp->type = 'd';
-	else
-		tmp->type = '-';
 	tmp->next = NULL;
 	return (tmp);
 }

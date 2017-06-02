@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 16:07:30 by tgrange           #+#    #+#             */
-/*   Updated: 2017/05/22 16:54:29 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/06/02 17:07:26 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@ void	get_group_author(struct stat buf, t_info *infos)
 	infos->blocks = buf.st_blocks;
 }
 
+void	get_perms2(struct stat buf, char *perms, int i)
+{
+	if (++i > -1 && buf.st_mode & S_IROTH)
+		perms[i] = 'r';
+	if (++i > -1 && buf.st_mode & S_IWOTH)
+		perms[i] = 'w';
+	if (++i > -1 && buf.st_mode & S_ISVTX && buf.st_mode & S_IXOTH)
+		perms[i] = 't';
+	else if (buf.st_mode & S_ISVTX)
+		perms[i] = 'T';
+	else if (buf.st_mode & S_IXOTH)
+		perms[i] = 'x';
+}
+
 void	get_perms(struct stat buf, char *perms)
 {
 	int		i;
@@ -33,22 +47,23 @@ void	get_perms(struct stat buf, char *perms)
 		perms[i] = 'r';
 	if (++i > -1 && buf.st_mode & S_IWUSR)
 		perms[i] = 'w';
-	if (++i > -1 && buf.st_mode & S_IXUSR)
+	if (++i > -1 && buf.st_mode & S_IXUSR && S_ISUID & buf.st_mode)
+		perms[i] = 's';
+	else if (!(buf.st_mode & S_IXUSR) && S_ISUID & buf.st_mode)
+		perms[i] = 'S';
+	else if (buf.st_mode & S_IXUSR)
 		perms[i] = 'x';
 	if (++i > -1 && buf.st_mode & S_IRGRP)
 		perms[i] = 'r';
 	if (++i > -1 && buf.st_mode & S_IWGRP)
 		perms[i] = 'w';
-	if (++i > -1 && buf.st_mode & S_IXGRP)
+	if (++i > -1 && buf.st_mode & S_IXGRP && S_ISUID & buf.st_mode)
+		perms[i] = 's';
+	else if (!(buf.st_mode & S_IXGRP) && S_ISUID & buf.st_mode)
+		perms[i] = 'S';
+	else if (buf.st_mode & S_IXGRP)
 		perms[i] = 'x';
-	if (++i > -1 && buf.st_mode & S_IROTH)
-		perms[i] = 'r';
-	if (++i > -1 && buf.st_mode & S_IWOTH)
-		perms[i] = 'w';
-	if (++i > -1 && buf.st_mode & S_ISVTX)
-		perms[i] = 't';
-	else if (i > -1 && buf.st_mode & S_IXOTH)
-		perms[i] = 'x';
+	get_perms2(buf, perms, i);
 }
 
 char	get_type(struct stat buf)
@@ -97,7 +112,7 @@ void	collect_infos(t_info **lst, t_flags flags)
 		lstat(tmp->path, &buf);
 		get_group_author(buf, tmp);
 		get_perms(buf, tmp->perms);
-		tmp->type = get_type(buf);
+		// tmp->type = get_type(buf);
 		if (tmp->type == 'c' || tmp->type == 'b' || tmp->type == 'p')
 			get_fifo(tmp, buf);
 		else
