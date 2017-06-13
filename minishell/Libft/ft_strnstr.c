@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 18:55:59 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:11:16 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/04 16:49:50 by tgrange           #+#    #+#             */
+/*   Updated: 2016/12/10 03:51:25 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_revstr(char *str, int do_free)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	char	*ret;
-	int		i;
-	int		j;
+	size_t	itn;
+	char	*it1;
+	char	*it2;
 
-	j = 0;
-	i = ft_strlen(str);
-	if (!str)
-		return (NULL);
-	if (!(ret = (char *)ft_memalloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	while (i--)
+	if (!*s2)
+		return ((void *)s1);
+	while (n-- && *s1)
 	{
-		ret[j] = str[i];
-		j++;
+		if (*s1 == *s2)
+		{
+			itn = n;
+			it1 = (void *)s1 + 1;
+			it2 = (void *)s2 + 1;
+			while (itn-- && *it1 && *it2 && *it1 == *it2)
+			{
+				++it1;
+				++it2;
+			}
+			if (!*it2)
+				return ((void *)s1);
+		}
+		s1++;
 	}
-	ret[j] = '\0';
-	if (do_free)
-		free(str);
-	return (ret);
+	return (NULL);
 }

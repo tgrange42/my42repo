@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 10:09:13 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:10:54 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/04/13 05:01:10 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char				*ft_revstr(char *str, int do_free);
+char				*ft_revstr(char *str);
 char				*ft_itoa_base(int nb, int base);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_itoa(int nb);

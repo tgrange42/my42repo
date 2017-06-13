@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 18:55:59 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:11:16 by tgrange          ###   ########.fr       */
+/*   Created: 2017/06/09 16:21:22 by tgrange           #+#    #+#             */
+/*   Updated: 2017/06/09 18:13:46 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_ls.h"
 
-char	*ft_revstr(char *str, int do_free)
+t_info		*tab_to_t_info(char **tab, t_flags flags)
 {
-	char	*ret;
 	int		i;
-	int		j;
+	t_info	*ret;
 
-	j = 0;
-	i = ft_strlen(str);
-	if (!str)
-		return (NULL);
-	if (!(ret = (char *)ft_memalloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	while (i--)
+	i = 0;
+	ret = NULL;
+	while (tab[i])
 	{
-		ret[j] = str[i];
-		j++;
+		create_t_info(tab[i], ft_strdup(tab[i]), flags, &ret);
+		i++;
 	}
-	ret[j] = '\0';
-	if (do_free)
-		free(str);
+	if (flags.r_flag)
+		rev_list(&ret);
 	return (ret);
+}
+
+void		del_tabstr(char ***str)
+{
+	int		i;
+
+	i = 0;
+	if (!str || !*str)
+		return ;
+	while ((*str)[i])
+		ft_strdel(&((*str)[i++]));
+	free(*str);
+	*str = NULL;
 }

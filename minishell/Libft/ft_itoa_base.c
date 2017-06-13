@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:25:33 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:11:45 by tgrange          ###   ########.fr       */
+/*   Updated: 2016/12/17 12:36:07 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ char			*ft_itoa_base(int nb, int base)
 	if (!(ret = (char *)malloc(sizeof(char) * 32)))
 		return (NULL);
 	if (base < 2)
-		return (ft_revstr(ft_itoa_base_v(nb, 2, ret), 1));
+		return (ft_revstr(ft_itoa_base_v(nb, 2, ret)));
 	if (base > 16)
-		return (ft_revstr(ft_itoa_base_v(nb, 16, ret), 1));
+		return (ft_revstr(ft_itoa_base_v(nb, 16, ret)));
 	if (nb == 0)
 	{
 		ret[0] = '0';
 		ret[1] = '\0';
 		return (ret);
 	}
-	return (ft_revstr(ft_itoa_base_v(nb, base, ret), 1));
+	return (ft_revstr(ft_itoa_base_v(nb, base, ret)));
 }

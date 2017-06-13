@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 18:55:59 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:11:16 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/04 14:05:58 by tgrange           #+#    #+#             */
+/*   Updated: 2017/04/03 16:07:39 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_revstr(char *str, int do_free)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	char	*ret;
-	int		i;
-	int		j;
+	size_t	i;
+	char	*buf;
 
-	j = 0;
-	i = ft_strlen(str);
-	if (!str)
-		return (NULL);
-	if (!(ret = (char *)ft_memalloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	while (i--)
+	buf = (char *)b;
+	i = 0;
+	while (i < len)
 	{
-		ret[j] = str[i];
-		j++;
+		buf[i] = (unsigned char)c;
+		i++;
 	}
-	ret[j] = '\0';
-	if (do_free)
-		free(str);
-	return (ret);
+	b = (void *)buf;
+	return (b);
 }

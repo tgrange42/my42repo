@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_countav.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 18:55:59 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:11:16 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/14 01:22:02 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/22 11:09:09 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_revstr(char *str, int do_free)
-{
-	char	*ret;
-	int		i;
-	int		j;
+/*
+** count words avoiding special characters
+*/
 
-	j = 0;
-	i = ft_strlen(str);
+int		ft_countav(const char *str, char c)
+{
+	int		i;
+	int		x;
+
+	x = 0;
+	i = 0;
 	if (!str)
-		return (NULL);
-	if (!(ret = (char *)ft_memalloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	while (i--)
+		return (0);
+	while (str[i] != '\0')
 	{
-		ret[j] = str[i];
-		j++;
+		if (str[i] != c)
+		{
+			x++;
+			while (str[i] != c && str[i])
+				i++;
+		}
+		else
+			i++;
 	}
-	ret[j] = '\0';
-	if (do_free)
-		free(str);
-	return (ret);
+	return (x);
 }

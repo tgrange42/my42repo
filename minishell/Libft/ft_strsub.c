@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 18:55:59 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:11:16 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/07 17:55:55 by tgrange           #+#    #+#             */
+/*   Updated: 2017/01/23 18:47:54 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_revstr(char *str, int do_free)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*ret;
-	int		i;
-	int		j;
+	size_t	i;
+	char	*res;
 
-	j = 0;
-	i = ft_strlen(str);
-	if (!str)
+	if (!(s))
 		return (NULL);
-	if (!(ret = (char *)ft_memalloc(sizeof(char) * (i + 1))))
+	if (!(res = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	while (i--)
+	i = 0;
+	while (i < len)
 	{
-		ret[j] = str[i];
-		j++;
+		res[i] = s[start + i];
+		i++;
 	}
-	ret[j] = '\0';
-	if (do_free)
-		free(str);
-	return (ret);
+	res[i] = '\0';
+	return (res);
 }

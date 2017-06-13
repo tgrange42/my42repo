@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 18:55:59 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:11:16 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/18 16:54:37 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/23 18:05:56 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_revstr(char *str, int do_free)
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	char	*ret;
-	int		i;
-	int		j;
+	t_list		*res;
+	t_list		*first;
 
-	j = 0;
-	i = ft_strlen(str);
-	if (!str)
+	if (!lst)
 		return (NULL);
-	if (!(ret = (char *)ft_memalloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	while (i--)
+	first = f(lst);
+	if (lst->next == NULL)
+		return (first);
+	if (lst->next)
+		res = first;
+	while (lst->next)
 	{
-		ret[j] = str[i];
-		j++;
+		lst = lst->next;
+		res->next = f(lst);
+		if (!res->next)
+			return (NULL);
+		res = res->next;
 	}
-	ret[j] = '\0';
-	if (do_free)
-		free(str);
-	return (ret);
+	return (first);
 }

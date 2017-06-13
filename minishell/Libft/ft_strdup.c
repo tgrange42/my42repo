@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgrange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 18:55:59 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:11:16 by tgrange          ###   ########.fr       */
+/*   Created: 2016/11/04 11:14:06 by tgrange           #+#    #+#             */
+/*   Updated: 2016/11/14 11:11:18 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_revstr(char *str, int do_free)
+char	*ft_strdup(const char *s1)
 {
-	char	*ret;
+	char	*res;
 	int		i;
-	int		j;
 
-	j = 0;
-	i = ft_strlen(str);
-	if (!str)
+	i = 0;
+	if (!(res = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1)))
 		return (NULL);
-	if (!(ret = (char *)ft_memalloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	while (i--)
+	while (s1[i] != '\0')
 	{
-		ret[j] = str[i];
-		j++;
+		res[i] = s1[i];
+		i++;
 	}
-	ret[j] = '\0';
-	if (do_free)
-		free(str);
-	return (ret);
+	res[i] = s1[i];
+	return (res);
 }

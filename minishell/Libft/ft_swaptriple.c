@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_revstr.c                                        :+:      :+:    :+:   */
+/*   ft_swaptriple.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 18:55:59 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/09 18:11:16 by tgrange          ###   ########.fr       */
+/*   Created: 2017/03/17 14:47:40 by tgrange           #+#    #+#             */
+/*   Updated: 2017/03/17 17:00:09 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_revstr(char *str, int do_free)
+void	ft_swaptriple(void ***s1, void ***s2)
 {
-	char	*ret;
-	int		i;
-	int		j;
+	void	**tmp;
 
-	j = 0;
-	i = ft_strlen(str);
-	if (!str)
-		return (NULL);
-	if (!(ret = (char *)ft_memalloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	while (i--)
-	{
-		ret[j] = str[i];
-		j++;
-	}
-	ret[j] = '\0';
-	if (do_free)
-		free(str);
-	return (ret);
+	tmp = *s1;
+	*s1 = *s2;
+	*s2 = tmp;
 }
