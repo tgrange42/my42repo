@@ -5,6 +5,7 @@
 int		main(int ac, char **av)
 {
 	pid_t	father;
+	char	*buf;
 
 	father = fork();
 	if (father > 0)
@@ -17,4 +18,5 @@ int		main(int ac, char **av)
 		execve("/bin/ls", av, NULL);
 	}
 	printf("LOL\n");
+	return (0);
 }

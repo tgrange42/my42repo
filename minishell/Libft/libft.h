@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <string.h>
 
+# define BUFF_SIZE 10
+
 typedef struct		s_list
 {
 	void			*content;
@@ -61,6 +63,7 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					ft_countav(const char *str, char c);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_tablen(char **tab);
+int					get_next_line(const int fd, char **line);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlento(char *str, size_t i, char c);
