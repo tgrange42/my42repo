@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   env_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/07 15:01:14 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/26 16:20:09 by tgrange          ###   ########.fr       */
+/*   Created: 2017/06/26 16:53:24 by tgrange           #+#    #+#             */
+/*   Updated: 2017/06/26 16:56:57 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		main(void)
+void	display_env(t_env **begin)
 {
-	extern char		**environ;
-	t_env			*env;
+	t_env	*env;
 
-	env = get_env(environ);
-	mini_core(env);
-	return (0);
+	env = *begin;
+	while (env)
+	{
+		ft_putstr(env->name);
+		ft_putchar('=');
+		ft_putendl(env->content);
+		env = env->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 10:09:13 by tgrange           #+#    #+#             */
-/*   Updated: 2017/04/13 05:01:10 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/06/26 19:29:02 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int					get_next_line(const int fd, char **line);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlento(char *str, size_t i, char c);
+size_t				ft_strlento2(char *s, size_t i, char c, char v);
 t_list				*ft_lstnew(const void *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				*ft_memset(void *b, int c, size_t len);

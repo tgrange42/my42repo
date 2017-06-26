@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strlento2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/07 15:01:14 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/26 16:20:09 by tgrange          ###   ########.fr       */
+/*   Created: 2017/06/26 19:25:48 by tgrange           #+#    #+#             */
+/*   Updated: 2017/06/26 19:28:52 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int		main(void)
+size_t	ft_strlento2(char *s, size_t i, char c, char v)
 {
-	extern char		**environ;
-	t_env			*env;
+	int		j;
 
-	env = get_env(environ);
-	mini_core(env);
-	return (0);
+	j = 0;
+	while (s[i] != c && s[i] != v && s[i])
+	{
+		j++;
+		i++;
+	}
+	return (j);
 }
