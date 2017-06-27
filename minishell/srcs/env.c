@@ -6,7 +6,7 @@
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 15:22:35 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/26 18:11:40 by tgrange          ###   ########.fr       */
+/*   Updated: 2017/06/27 17:54:35 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ char		*get_content(t_env **begin, char *name)
 	return (NULL);
 }
 
+void		force_pwd(t_env **begin)
+{
+	char	*buf;
+
+	buf = NULL;
+	buf = getcwd(buf, PATH_MAX);
+	add_or_change(begin, "PWD", buf);
+	ft_strdel(&buf);
+}
+
 t_env		*get_env(char **environ)
 {
 	t_env	*ret;
@@ -40,5 +50,9 @@ t_env		*get_env(char **environ)
 		create_t_env(&ret, tmp[0], tmp[1]);
 		del_tabstr(&tmp);
 	}
+	force_pwd(&ret);
+	add_or_change(&ret, "SHELL", "minishell");
+	delete_t_env(&ret, "ZSH");
+	delete_t_env(&ret, "OLDPWD");
 	return (ret);
 }

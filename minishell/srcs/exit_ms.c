@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   exit_ms.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/26 14:41:04 by tgrange           #+#    #+#             */
-/*   Updated: 2017/06/27 17:54:36 by tgrange          ###   ########.fr       */
+/*   Created: 2017/06/27 16:07:59 by tgrange           #+#    #+#             */
+/*   Updated: 2017/06/27 17:54:37 by tgrange          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	change_dir(t_env **begin, char **args, int p)
+void	delete_list(t_env **env)
 {
-	if (p)
+	t_env	*tmp;
+	t_env	*tmp2;
+
+	tmp = *env;
+	tmp2 = tmp;
+	while (tmp)
 	{
-		p = 1;
+		tmp2 = tmp->next;
+		ft_strdel(&tmp->name);
+		ft_strdel(&tmp->content);
+		free(tmp);
+		tmp = tmp2;
 	}
-	
-	chdir(args[p]);
-	add_or_change(begin, "OLDPWD", get_content(begin, "PWD"));
-	force_pwd(begin);
 }
 
-void	cd(t_env **begin, char **args)
+void	exit_ms(t_env **env)
 {
-	int		p;
-
-	p = 0;
-	if (ft_strequ("-P", args[0]))
-		p = 1;
-	change_dir(begin, args, p);
+	delete_list(env);
+	exit(1);
 }

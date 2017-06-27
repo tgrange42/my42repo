@@ -6,7 +6,7 @@
 #    By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 18:25:11 by tgrange           #+#    #+#              #
-#    Updated: 2017/06/26 19:28:24 by tgrange          ###   ########.fr        #
+#    Updated: 2017/06/27 16:29:58 by tgrange          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ $(NAME): $(obj)
 
 %.o: %.c
 	@gcc -o $@ -c $< $(flags)
+	@echo $@ done !
 
 clean:
 	@rm -rf $(obj)

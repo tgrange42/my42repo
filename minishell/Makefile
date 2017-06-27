@@ -6,7 +6,7 @@
 #    By: tgrange <tgrange@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 14:52:31 by tgrange           #+#    #+#              #
-#    Updated: 2017/06/26 19:03:32 by tgrange          ###   ########.fr        #
+#    Updated: 2017/06/27 17:54:37 by tgrange          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SRCS =		minishell.c \
 			tools.c \
 			env_functions.c \
 			echo.c \
+			pwd.c \
+			exit_ms.c \
 
 SRCSD =		$(addprefix srcs/, $(notdir $(SRCS)))
 
